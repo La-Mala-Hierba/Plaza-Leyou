@@ -1,0 +1,13 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: cart-service
+  datasource:
+    url: jdbc:mysql://localhost:3307/plazaleyou?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: heiya
+    jpa:
+  data:
+    mongodb:
+      uri: mongodb://root:heiya@localhost:27017

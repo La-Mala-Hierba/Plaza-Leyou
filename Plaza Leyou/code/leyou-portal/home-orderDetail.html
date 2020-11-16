@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>Detalles del pedido</title>
+     <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+</head>
+
+<body>
+    <!--页面顶部白条条，由js动态加载-->
+	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+    <div id="orderDetailApp">
+        <div class="nav-bottom">
+            <ly-top/>
+        </div>
+        <!--<div class="nav-bottom"></div>
+        <script type="text/javascript">$(".nav-bottom").load("top.html");</script>-->
+
+<script type="text/javascript">
+$(function(){
+	$("#service").hover(function(){
+		$(".service").show();
+	},function(){
+		$(".service").hide();
+	});
+	$("#shopcar").hover(function(){
+		$("#shopcarlist").show();
+	},function(){
+		$("#shopcarlist").hide();
+	});
+
+})
+</script>
+<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
+<script type="text/javascript" src="js/widget/nav.js"></script>
+
+    <!--header-->
+
+        <div class="py-container">
+            <div class="yui3-g home">
+                <!--左侧列表-->
+                <div class="yui3-u-1-6 list">
+
+                    <div class="person-info">
+                        <div class="person-photo"><img src="img/_/Perfil.jpg" alt=""></div>
+                        <div class="person-account">
+                            <span class="name" v-text="user.username" style="text-align: center"></span>
+                            <span class="safe"><a href="javascript:void(0)" @click="logOut">Cerrar Cesión </a></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="list-items">
+                        <dl>
+                            <dt><i>·</i>Mis Pedidos</dt>
+                            <dd><a href="javascript:void(0)">Todos los pedidos</a></dd>
+                            <dd><a href="javascript:void(0)">Pendiente del pago</a></dd>
+                            <dd><a href="javascript:void(0)">Pendiente del envío</a></dd>
+                            <dd><a href="javascript:void(0)">Pendiente de recepción</a></dd>
+                            <dd><a href="javascript:void(0)">Pendiente del comentario</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><i>·</i> Mis listas</dt>
+                            <dd><a href="home-person-collect.html">Mis favoritos</a></dd>
+                            <dd><a href="home-person-footmark.html">Mis huellas</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><i>·</i> Mi cuenta</dt>
+                            <dd><a href="home-setting-info.html">Datos personales</a></dd>
+                            <dd><a href="home-setting-address.html"  >Direcciones</a></dd>
+                            <dd><a href="home-setting-safe.html" >Inicio de sesión y seguridad</a></dd>
+                        </dl>
+                    </div>
+                </div>
+                <!--右侧主内容-->
+                <div class="yui3-u-5-6">
+                    <div class="body">
+                        <div class="order-detail">
+                            <h4>Localizar tu paquete</h4>
+                            <div class="order-bar">
+                                <div class="sui-steps-round steps-round-auto steps-4">
+                                    <div :class="{finished : orderStatus.status >= 1}">
+                                        <div class="wrap">
+                                        <div class="round">1</div>
+                                        <div class="bar"></div>
+                                        </div>
+                                        <label>
+                                            <span>Pedido confirmado</span>
+                                            <span>{{ly.formatDate(orderStatus.createTime).split(" ")[0]}}</span>
+                                            <span>{{ly.formatDate(orderStatus.createTime).split(" ")[1]}}</span>
+                                        </label>
+                                    </div>
+                                    <div :class="orderStatus.status >=2? 'current': 'todo'">
+                                        <div class="wrap">
+                                        <div class="round">2</div>
+                                        <div class="bar"></div>
+                                        </div>
+                                        <label v-if="orderStatus.paymentTime != null">
+                                            <span>Pedido pagado</span>
+                                            <span>{{ly.formatDate(orderStatus.paymentTime).split(" ")[0]}}</span>
+                                            <span>{{ly.formatDate(orderStatus.paymentTime).split(" ")[1]}}</span>
+                                        </label>
+                                    </div>
+                                    <div :class="orderStatus.status >=3? 'current': 'todo'">
+                                        <div class="wrap">
+                                        <div class="round">3</div>
+                                        <div class="bar"></div>
+                                        </div>
+                                        <label v-if="orderStatus.consignTime != null">
+                                            <span>Enviado</span>
+                                            <span>{{ly.formatDate(orderStatus.consignTime).split(" ")[0]}}</span>
+                                            <span>{{ly.formatDate(orderStatus.consignTime).split(" ")[1]}}</span>
+                                        </label>
+                                    </div>
+                                    <div :class="orderStatus.status >= 4? 'current': 'todo'">
+                                        <div class="wrap">
+                                        <div class="round">4</div>
+                                        <div class="bar"></div>
+                                        </div>
+                                        <label v-if="orderStatus.endTime != null">
+                                            <span>Entregado</span>
+                                            <span>{{ly.formatDate(orderStatus.endTime).split(" ")[0]}}</span>
+                                            <span>{{ly.formatDate(orderStatus.endTime).split(" ")[1]}}</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div :class="orderStatus.status >= 5? 'current': 'todo'" >
+                                        <div class="wrap">
+                                        <div class="round">5</div>
+                                        </div>
+                                        <label v-if="orderStatus.closeTime != null">
+                                            <span>Transacción finalizada</span>
+                                            <span>{{ly.formatDate(orderStatus.closeTime).split(" ")[0]}}</span>
+                                            <span>{{ly.formatDate(orderStatus.closeTime).split(" ")[1]}}</span>
+                                        </label>
+                                    </div>
+                                    </div>
+                            </div>
+                            <div class="order-state">
+                                <p>Estado actual: <span class="red" v-text="actualStatus"></span></p>
+                               <!-- <p>还剩06天00小时 自动确认收货</p>-->
+                            </div>
+                        </div>
+                        <div class="order-info">
+                            <h5>Detalles del pedido</h5>
+                            <p>Dirección de envío:
+                                {{order.receiverAddress+ ". "+ order.receiverDistrict + ", " + order.receiverCity+ ", "
+                                +order.receiverState+ ", "+order.receiverZip}}
+                            </p>
+                            <p>Destinatario: <span v-text="order.receiver"></span></p>
+                            <p>Teléfono del contacto: <span v-text="order.receiverMobile"></span></p>
+                            <p>Pedido n.º:  &nbsp; <span v-text="order.orderId"></span></p>
+                            <p>Pedido confirmado el <span v-text="ly.formatDate(order.createTime)"></span></p>
+                            <p v-if="orderStatus.status >1 && orderStatus.status !==5">
+                                Pedido pagado el {{ly.formatDate(orderStatus.paymentTime)}}
+                            </p>
+                            <p v-if="orderStatus.status >=3 && orderStatus.status !==5">
+                                Pedido enviado el {{ly.formatDate(orderStatus.consignTime)}}
+                            </p>
+                        </div>
+                        <div class="order-goods">
+                            <table class="sui-table">
+                                    <thead>
+                                        <th class="center" >Artículo</th>
+                                        <th class="center" >Precio</th>
+                                        <th class="center" width="5%">Cantidad</th>
+                                        <th class="center" width="10%">Promoción</th>
+                                        <th class="center" width="15%">Estado</th>
+                                    </thead>                                   
+                             
+                                <tbody v-for="orderdetail in order.orderDetails":key="orderdetail.id">
+                                    <tr>
+                                        <td colspan="5">Estado: Nuevo</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">
+                                            <div class="typographic">
+                                                <img width="90px" height="90px" :src="orderdetail.image" />
+                                                    <span>{{orderdetail.title}}</span>
+                                                    <span class="guige" v-for="(value, key) in JSON.parse(orderdetail.ownSpec)":key="key">
+                                                         <span v-text="value"></span>
+                                                    </span>
+                                                </div>
+                                        </td>
+                                        <td width="20%" class="center">
+                                            <ul class="unstyled">
+                                                    <!--<li class="o-price">¥599.00</li>	-->
+                                                    <li>¥{{ly.formatPrice(orderdetail.price)}}</li>
+                                                </ul>
+                                        </td>
+                                        <td width="5%" class="center"><span v-text="orderdetail.num"></span></td>
+                                        <td width="10%">No</td>
+                                        <td width="15%">{{actualStatus}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="order-price"    >
+                                <p>Precio total: ￥{{ly.formatPrice(order.totalPay)}}</p>
+                                <p>Gastos del envío: ￥{{ly.formatPrice(parseInt(order.postFee))}}</span></p>
+                                <h4 class="red">Pagado: ￥{{ly.formatPrice(order.actualPay)}}</span></h4>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--猜你喜欢-->
+                        <div class="like-title">
+                            <div class="mt">
+                                <span class="fl"><strong>热卖单品</strong></span>
+                            </div>
+                        </div>
+                        <div class="like-list">
+                            <ul class="yui3-g">
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike01.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>3699.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有6人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike02.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>4388.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有700人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike03.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有700人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike04.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有700人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+	<!-- 底部栏位 -->
+	<!--页面底部，由js动态加载-->
+	<div class="clearfix footer"></div>
+	<script type="text/javascript">$(".footer").load("foot.html");</script>
+	<!--页面底部END-->
+<script src="./js/vue/vue.js"></script>
+<script src="./js/vue/vuetify.js"></script>
+<script src="./js/axios.min.js"></script>
+<script src="./js/common.js"></script>
+<script type="text/javascript">
+    let orderVm = new Vue({
+        el: "#orderDetailApp",
+        data: {
+            ly,
+            order: {},
+            user: {
+                username: ""
+            },
+            orderStatus:{},
+            status: [
+                "Pedido confirmado",
+                "Pedido pagado",
+                "En reparto",
+                "Entregado",
+                "Transacción finalizada"
+            ],
+        },
+        created() {
+            this.loadOrderData();
+        },
+        computed: {
+            actualStatus() {
+                if (this.orderStatus.status === 6 || this.orderStatus.status === 5){
+                    return  this.status[4];
+                }else {
+                    return  this.status[this.orderStatus.status - 1];
+                }
+            },
+        },
+        methods: {
+            loadOrderData() {
+                ly.verify().then(response => {
+                    this.user = response.data;
+                    this.order = ly.store.get("order");
+                    ly.http.get("order/order/orderstatus/"+this.order.orderId).then(({data}) => {
+                        this.orderStatus = data;
+                    });
+                }).catch(() => {
+                    this.goToLogin();
+                });
+            },
+            logOut() {
+                // eliminar el token en Cookies
+                Cookies.remove("PLY_TOKEN", {
+                    path: "/",
+                    domain: "leyou.com",
+                });
+                window.location = "http://www.leyou.com";
+            },
+        },
+        components: {
+            lyTop: () => import("./js/pages/top.js"),
+        }
+    });
+</script>
+
+</html>

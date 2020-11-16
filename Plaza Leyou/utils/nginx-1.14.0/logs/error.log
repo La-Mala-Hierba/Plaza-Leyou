@@ -1,0 +1,29 @@
+2020/10/14 13:13:44 [notice] 19100#11000: signal process started
+2020/10/14 13:15:08 [notice] 19300#15660: signal process started
+2020/10/14 23:29:59 [notice] 26560#28524: signal process started
+2020/10/17 12:42:17 [notice] 10092#11540: signal process started
+2020/10/17 21:30:57 [error] 23936#11124: *1303 client intended to send too large body: 5170459 bytes, client: 127.0.0.1, server: api.leyou.com, request: "POST /api/upload/image HTTP/1.1", host: "api.leyou.com", referrer: "http://manage.leyou.com/"
+2020/10/18 13:00:37 [notice] 14268#21112: signal process started
+2020/10/18 13:00:48 [notice] 25248#28960: signal process started
+2020/10/18 13:33:09 [emerg] 7028#30468: invalid number of arguments in "rewrite" directive in D:\IdeaProjects\plazaLeyou\utils\nginx-1.14.0/conf/nginx.conf:66
+2020/10/18 13:33:27 [emerg] 25836#4992: invalid number of arguments in "rewrite" directive in D:\IdeaProjects\plazaLeyou\utils\nginx-1.14.0/conf/nginx.conf:66
+2020/10/18 13:33:54 [notice] 11596#18116: signal process started
+2020/10/20 14:42:22 [notice] 29816#22888: signal process started
+2020/10/20 14:58:24 [notice] 29064#14820: signal process started
+2020/10/21 11:21:13 [notice] 22872#35012: signal process started
+2020/10/25 12:09:49 [notice] 17488#23084: signal process started
+2020/10/25 12:13:05 [notice] 17692#22072: signal process started
+2020/10/25 12:15:55 [notice] 36456#31392: signal process started
+2020/10/25 12:19:00 [notice] 13512#38772: signal process started
+2020/10/25 12:21:14 [notice] 21036#34836: signal process started
+2020/10/25 12:22:49 [notice] 31328#6652: signal process started
+2020/10/25 12:23:16 [notice] 33380#36132: signal process started
+2020/10/25 12:24:05 [notice] 24360#18052: signal process started
+2020/10/25 12:34:34 [notice] 18292#28928: signal process started
+2020/10/25 12:35:59 [notice] 37348#15604: signal process started
+2020/10/25 23:22:43 [notice] 25256#28908: signal process started
+2020/10/29 10:59:25 [notice] 6496#8464: signal process started
+2020/10/29 19:01:22 [notice] 13180#27336: signal process started
+2020/11/09 22:57:21 [error] 29292#22784: *481 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while connecting to upstream, client: 127.0.0.1, server: api.leyou.com, request: "OPTIONS /api/upload/image HTTP/1.1", upstream: "http://127.0.0.1:8082/upload/image", host: "api.leyou.com", referrer: "http://manage.leyou.com/"
+2020/11/10 15:56:41 [error] 13888#23948: *24 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while connecting to upstream, client: 127.0.0.1, server: api.leyou.com, request: "OPTIONS /api/upload/image HTTP/1.1", upstream: "http://127.0.0.1:8082/upload/image", host: "api.leyou.com", referrer: "http://manage.leyou.com/"
+2020/11/14 22:35:39 [notice] 7888#17564: signal process started

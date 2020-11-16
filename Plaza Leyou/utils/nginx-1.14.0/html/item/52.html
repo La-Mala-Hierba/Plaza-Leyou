@@ -1,0 +1,756 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>Plaza Leyou -- Detalles de artículo</title>
+	 <link rel="icon" href="/assets/img/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pages-item.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pages-zoom.css" />
+    <link rel="stylesheet" type="text/css" href="/css/widget-cartPanelView.css" />
+
+	<style type="text/css">
+	.goods-intro-list li {
+		display: inline-block;
+		width: 300px;
+	}
+       .Ptable {
+           margin: 10px 0;
+       }
+       .Ptable-item {
+            padding: 12px 0;
+            line-height: 220%;
+            color: #999;
+            font-size: 12px;
+               border-bottom: 1px solid #eee;
+        }
+       .Ptable-item h3 {
+           width: 110px;
+           text-align: right;
+       }
+       .Ptable-item h3, .package-list h3 {
+           font-weight: 400;
+           font-size: 12px;
+           float: left;
+       }
+       h3 {
+           display: block;
+           font-size: 1.17em;
+           -webkit-margin-before: 1em;
+           -webkit-margin-after: 1em;
+           -webkit-margin-start: 0px;
+           -webkit-margin-end: 0px;
+           font-weight: bold;
+       }
+       .Ptable-item dl {
+           margin-left: 110px;
+       }
+       dl {
+           display: block;
+           -webkit-margin-before: 1em;
+           -webkit-margin-after: 1em;
+           -webkit-margin-start: 0px;
+           -webkit-margin-end: 0px;
+       }
+       .Ptable-item dt {
+           width: 160px;
+           float: left;
+           text-align: right;
+           padding-right: 5px;
+       }
+       .Ptable-item dd {
+           margin-left: 210px;
+       }
+       dd {
+           display: block;
+           -webkit-margin-start: 40px;
+       }
+       .package-list {
+           padding: 12px 0;
+           line-height: 220%;
+           color: #999;
+           font-size: 12px;
+           margin-top: -1px;
+       }
+       .package-list h3 {
+           width: 130px;
+           text-align: right;
+       }
+       .package-list p {
+           margin-left: 155px;
+           padding-right: 50px;
+       }
+</style>
+
+</head>
+
+<body>
+
+<!-- 头部栏位 -->
+<!--页面顶部，由js动态加载-->
+<div id="itemApp">
+	<div id="nav-bottom">
+		<ly-top />
+	</div>
+	<div class="py-container">
+		<div id="item">
+			<div class="crumb-wrap">
+				<ul class="sui-breadcrumb">
+					<li>
+						<a href="#">Electrónica</a>
+					</li>
+					<li>
+						<a href="#">Telefonía</a>
+					</li>
+					<li>
+						<a href="#">Móviles</a>
+					</li>
+
+					<li>
+						<a href="#">Samsung（SAMSUNG）</a>
+					</li>
+					<li class="active">Samsung Galaxy C8（SM-C7100）4GB+64GB </li>
+				</ul>
+			</div>
+			<!--product-info-->
+			<div class="product-info">
+				<div class="fl preview-wrap">
+					<!--放大镜效果-->
+					<div class="zoom">
+						<!--默认第一个预览-->
+						<div id="preview" class="spec-preview">
+							<span class="jqzoom">
+								<img :jqimg="images[0]" :src="images[0]" width="400px" height="400px"/>
+							</span>
+						</div>
+						<!--下方的缩略图-->
+						<div class="spec-scroll">
+							<a class="prev">&lt;</a>
+							<!--左右按钮-->
+							<div class="items">
+								<ul>
+										<li v-for="(image, index) in images":key="index">
+											<img :src="image" :bimg="image" onmousemove="preview(this)"/>
+										</li>
+								</ul>
+							</div>
+							<a class="next">&gt;</a>
+						</div>
+					</div>
+				</div>
+				<div class="fr itemInfo-wrap">
+					<div class="sku-name">
+						<h4 v-text="sku.title"></h4>
+					</div>
+					<div class="news"><span>5.5英寸，后置双摄像头，面部识别+指纹识别！<a href='https://sale.jd.com/act/T15MnRgiasWe8L.html' target='_blank'>SamsungS9震撼上市详情猛戳>></a></span></div>
+					<div class="summary">
+						<div class="summary-wrap">
+							<div class="fl title"><i>Precio</i></div>
+							<div class="fl price">
+								<i>¥</i><em v-text="ly.formatPrice(sku.price)"></em><span>  Promoción</span>
+							</div>
+							<div class="fr remark"><i>Valoración </i><em>612188</em></div>
+						</div>
+						<div class="summary-wrap">
+							<div class="fl title">
+								<i>Promoción</i>
+							</div>
+							<div class="fl fix-width">
+								<i class="red-bg">加价购</i>
+								<em class="t-gray">满999.00另加20.00元，或满1999.00另加30.00元，或满2999.00另加40.00元，即可在购物车换
+购热销商品</em>
+							</div>
+						</div>
+					</div>
+					<div class="support">
+						<div class="summary-wrap">
+							<div class="fl title">
+								<i>支　　持</i>
+							</div>
+							<div class="fl fix-width">
+								<em class="t-gray">以旧换新，闲置手机回收  4G套餐超值抢  礼品购</em>
+							</div>
+						</div>
+						<div class="summary-wrap">
+							<div class="fl title">
+								<i>配 送 至</i>
+							</div>
+							<div class="fl fix-width">
+								<em class="t-gray">上海 <span>有货</span></em>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix choose">
+						<div id="specification" class="summary-wrap clearfix">
+							<dl v-for="(value, key, index) in specialSpec":key="index">
+								<dt>
+									<div class="fl title">
+									<i v-text="paramMap[key]"></i>
+								</div>
+								</dt>
+								<dd v-for="(v, i) in value":key="i">
+									<a href="javascript:;" :class="{selected: i == indexes[key]}"  v-text="v" @click="indexes[key]=i">
+										<span title="点击取消选择">&nbsp;</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+
+						<div class="summary-wrap">
+							<div class="fl title">
+								<div class="control-group">
+									<div class="controls">
+										<input autocomplete="off" type="text" v-model="num" disabled value="1" minnum="1" class="itxt" />
+										<a href="javascript:void(0)" class="increment plus" @click="incr()">+</a>
+										<a href="javascript:void(0)" class="increment mins" @click="decr()">-</a>
+									</div>
+								</div>
+							</div>
+							<div class="fl">
+								<ul class="btn-choose unstyled">
+									<li>
+										<a href="javascript:void(0);" target="_self" @click="addCart"
+										   class="sui-btn btn-danger addshopcar" style="background-color: #bf3553">
+											Añadir a la cesta
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--product-detail-->
+			<div class="clearfix product-detail">
+				<div class="fl aside">
+					<ul class="sui-nav nav-tabs tab-wraped">
+						<li class="active">
+							<a href="#index" data-toggle="tab">
+								<span>相关分类</span>
+							</a>
+						</li>
+						<li>
+							<a href="#profile" data-toggle="tab">
+								<span>推荐品牌</span>
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content tab-wraped">
+						<div id="index" class="tab-pane active">
+							<ul class="part-list unstyled">
+								<li>手机</li>
+								<li>手机壳</li>
+								<li>内存卡</li>
+								<li>Iphone配件</li>
+								<li>贴膜</li>
+								<li>手机耳机</li>
+								<li>移动电源</li>
+								<li>平板电脑</li>
+							</ul>
+							<ul class="goods-list unstyled">
+								<li>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part01.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part02.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part03.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part02.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part03.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div id="profile" class="tab-pane">
+							<p>推荐品牌</p>
+						</div>
+					</div>
+				</div>
+				<div class="fr detail">
+					<div class="clearfix fitting">
+						<h4 class="kt">选择搭配</h4>
+						<div class="good-suits">
+							<div class="fl master">
+								<div class="list-wrap">
+									<div class="p-img">
+										<img src="/img/_/l-m01.png" />
+									</div>
+									<em>￥5299</em>
+									<i>+</i>
+								</div>
+							</div>
+							<div class="fl suits">
+								<ul class="suit-list">
+									<li class="">
+										<div id="">
+											<img src="/img/_/dp01.png" />
+										</div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>39</span>
+  </label>
+									</li>
+									<li class="">
+										<div id=""><img src="/img/_/dp02.png" /> </div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>50</span>
+  </label>
+									</li>
+									<li class="">
+										<div id=""><img src="/img/_/dp03.png" /></div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>59</span>
+  </label>
+									</li>
+									<li class="">
+										<div id=""><img src="/img/_/dp04.png" /></div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>99</span>
+  </label>
+									</li>
+								</ul>
+							</div>
+							<div class="fr result">
+								<div class="num">已选购0件商品</div>
+								<div class="price-tit"><strong>套餐价</strong></div>
+								<div class="price">￥5299</div>
+								<button class="sui-btn  btn-danger addshopcar">加入购物车</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-main intro">
+						<ul class="sui-nav nav-tabs tab-wraped">
+							<li class="active">
+								<a href="#one" data-toggle="tab">
+									<span>General</span>
+								</a>
+							</li>
+							<li>
+								<a href="#two" data-toggle="tab">
+									<span>Especificaciones</span>
+								</a>
+							</li>
+							<li>
+								<a href="#three" data-toggle="tab">
+									<span>Servicio posventa</span>
+								</a>
+							</li>
+							<li>
+								<a href="#four" data-toggle="tab">
+									<span>Valoracions de cliente</span>
+								</a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+						<div class="tab-content tab-wraped">
+							<div id="one" class="tab-pane active">
+								<!--展示的是规格属性列表（不展示特有属性）-->
+								<ul class="goods-intro-list unstyled" style="list-style: none;" v-for="group in groups":key="group.id">
+									<li v-for="param in group.params":key="param.id">
+										{{param.name}} : {{param.value}}
+									</li>
+								</ul>
+								<!--商品详情-->
+								<div class="intro-detail">
+									<p  style="margin: 0 auto;"><div style="width:750px; margin:auto;"> 
+ <div align="center"> 
+  <div style="text-align:center;"> 
+   <img src="//img20.360buyimg.com/cms/jfs/t17407/254/571958006/22780/593f9b27/5a969fb4Nfce9ac87.jpg" /> 
+  </div> 
+  <img src="//img11.360buyimg.com/cms/jfs/t8656/132/1480203016/85514/419a377d/59ba4decNc52fbb5e.jpg" width="750" height="476" alt="" /> 
+  <img src="//img14.360buyimg.com/cms/jfs/t8455/194/1520294882/59667/32c38810/59ba4df0N9f352c58.jpg" width="750" height="361" alt="" /> 
+  <img src="//img12.360buyimg.com/cms/jfs/t9151/82/1472463468/299343/a97e28db/59ba4de1Nce52b496.jpg" width="750" height="655" alt="" /> 
+  <img src="//img11.360buyimg.com/cms/jfs/t8749/72/1473499496/221631/d68a87f7/59ba4df8N4c56d1aa.jpg" width="750" height="687" alt="" /> 
+  <img src="//img10.360buyimg.com/cms/jfs/t9406/152/1496676921/260156/33c52d5c/59ba4dfcNe5ee4452.jpg" width="750" height="759" alt="" /> 
+  <img src="//img14.360buyimg.com/cms/jfs/t8584/170/1433607437/87943/e8f98aba/59ba4e00N9eb4e3e9.jpg" width="750" height="457" alt="" /> 
+  <img src="//img12.360buyimg.com/cms/jfs/t8272/145/1451949437/96198/d449cf42/59ba4e06N4978e8ca.jpg" width="750" height="500" alt="" /> 
+  <img src="//img11.360buyimg.com/cms/jfs/t8617/264/1430514317/251370/c0a987cb/59ba4eb6Nca5a5d79.jpg" width="750" height="572" alt="" /> 
+  <img src="//img14.360buyimg.com/cms/jfs/t9154/284/1474806142/83062/16910d22/59ba4ebbN0fd0a7ef.jpg" width="750" height="372" alt="" /> 
+  <img src="//img13.360buyimg.com/cms/jfs/t8920/172/1445613881/204986/e036388e/59ba4ec0Ndb264ca5.jpg" width="750" height="536" alt="" /> 
+  <img src="//img11.360buyimg.com/cms/jfs/t8866/234/1487384986/157098/e8adb649/59ba4ecbNa23c0540.jpg" width="750" height="703" alt="" /> 
+  <img src="//img10.360buyimg.com/cms/jfs/t8590/319/1487902033/262761/f6d0d032/59ba4ed0Nd3ec8531.jpg" width="750" height="803" alt="" /> 
+  <img src="//img14.360buyimg.com/cms/jfs/t8905/257/1459323378/232166/6e2355e1/59ba4ed4Nc6bd7aa1.jpg" width="750" height="692" alt="" /> 
+  <img src="//img12.360buyimg.com/cms/jfs/t9016/248/1489775041/166122/824fb8ed/59ba4ed9N4d3384bd.jpg" width="750" height="704" alt="" /> 
+  <div style="text-align:center;"> 
+   <img src="//img12.360buyimg.com/cms/jfs/t15778/326/2208462414/72689/1dedb894/5a969fd7Nb68d26cf.jpg" /> 
+  </div> 
+ </div> 
+</div><br/></p>
+								</div>
+							</div>
+							<div id="two" class="tab-pane">
+								<div class="Ptable">
+    <div class="Ptable-item" v-for="group in groups":key="group.id">
+        <h3 v-text="group.name"></h3>
+        <dl v-for="param in group.params":key="param.id">
+            <dt v-text="param.name"></dt><dd v-text="param.value"></dd>
+        </dl>
+    </div>
+</div>
+<div class="package-list">
+    <h3>Packing List</h3>
+    <p>手机*1；充电器*1；耳机*1；数据线*1；卡针*1；保修卡*1；说明书*1；礼品卡*1 提示：收货后将包装盒内的所有物品务必保留！申请退货时还请整套申请返回给销售商。</p>
+</div>
+
+							</div>
+							<div id="three" class="tab-pane">
+								<p>Servicio posventa</p>
+								<p>本产品全国联保，享受三包服务，质保期为：一年质保</p>
+							</div>
+							<div id="four" class="tab-pane">
+								<p>Valoraciones de cliente</p>
+							</div>
+							<div id="five" class="tab-pane">
+								<p>手机社区</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--like-->
+			<div class="clearfix"></div>
+			<div class="like">
+				<h4 class="kt">猜你喜欢</h4>
+				<div class="like-list">
+					<ul class="yui3-g">
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike01.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>3699.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有6人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike02.png" />
+								</div>
+								<div class="attr">
+									<em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4388.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike03.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike04.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike05.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike06.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<script src="/js/vue/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+	const groups = [{"id":1,"cid":76,"name":"General","params":[{"id":1,"cid":76,"groupId":1,"name":"Marca","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":2,"cid":76,"groupId":1,"name":"Modelo","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":3,"cid":76,"groupId":1,"name":"Fecha de fabricaci\u00F3n","numeric":true,"unit":"A\u00F1o","generic":true,"searching":false,"segments":""}]},{"id":2,"cid":76,"name":"Informaci\u00F3n de producto","params":[{"id":4,"cid":76,"groupId":2,"name":"Color","numeric":false,"unit":"","generic":false,"searching":false,"segments":""},{"id":5,"cid":76,"groupId":2,"name":"Peso\uFF08g\uFF09","numeric":true,"unit":"g","generic":true,"searching":false,"segments":""},{"id":6,"cid":76,"groupId":2,"name":"Material de m\u00F3vil","numeric":false,"unit":"","generic":true,"searching":false,"segments":""}]},{"id":3,"cid":76,"name":"Sistema operativo","params":[{"id":7,"cid":76,"groupId":3,"name":"Sistema operativo","numeric":false,"unit":"","generic":true,"searching":true,"segments":""}]},{"id":4,"cid":76,"name":"Processor chip","params":[{"id":8,"cid":76,"groupId":4,"name":"Marca de procesador","numeric":false,"unit":"","generic":true,"searching":true,"segments":""},{"id":9,"cid":76,"groupId":4,"name":"Modelo de procesador","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":10,"cid":76,"groupId":4,"name":"Procesadores Intel Core","numeric":false,"unit":"","generic":true,"searching":true,"segments":""},{"id":11,"cid":76,"groupId":4,"name":"Procesador","numeric":true,"unit":"GHz","generic":true,"searching":true,"segments":"0-1.0,1.0-1.5,1.5-2.0,2.0-2.5,2.5-"}]},{"id":5,"cid":76,"name":"Memoria interna","params":[{"id":12,"cid":76,"groupId":5,"name":"Memoria interna","numeric":false,"unit":"","generic":false,"searching":true,"segments":""},{"id":13,"cid":76,"groupId":5,"name":"Memoria RAM","numeric":false,"unit":"","generic":false,"searching":true,"segments":""}]},{"id":6,"cid":76,"name":"C\u00E1mara","params":[{"id":16,"cid":76,"groupId":6,"name":"C\u00E1mara frontal","numeric":true,"unit":"mp","generic":true,"searching":true,"segments":"0-500,500-1000,1000-1500,1500-2000,2500-"},{"id":17,"cid":76,"groupId":6,"name":"C\u00E1mara trasera","numeric":true,"unit":"mp","generic":true,"searching":true,"segments":"0-500,500-1000,1000-1500,1500-2000,2500-"}]},{"id":7,"cid":76,"name":"Bater\u00EDa","params":[{"id":18,"cid":76,"groupId":7,"name":"Bater\u00EDa\uFF08mAh\uFF09","numeric":true,"unit":"mAh","generic":true,"searching":true,"segments":"0-2000,2000-3000,3000-4000,4000-"}]},{"id":11,"cid":76,"name":"Pantalla","params":[{"id":14,"cid":76,"groupId":11,"name":"Dimensiones","numeric":true,"unit":"mm","generic":true,"searching":true,"segments":"0-4.0,4.0-5.0,5.0-5.5,5.5-6.0,6.0-"},{"id":15,"cid":76,"groupId":11,"name":"Resoluci\u00F3n c\u00E1mara frontal","numeric":false,"unit":"","generic":true,"searching":false,"segments":""}]}];
+	const paramMap = {"4":"Color","12":"Memoria interna","13":"Memoria RAM"};
+	const specialSpec = JSON.parse("{\"4\":[\"\u58A8\u7389\u9ED1\",\"\u67AB\u53F6\u91D1\",\"\u8537\u8587\u7C89\"],\"12\":[\"4GB\"],\"13\":[\"64GB\"]}");
+	const genericSpec = JSON.parse("{\"1\":\"\u4E09\u661F\uFF08SAMSUNG\uFF09\",\"2\":\"SM-C7100\",\"3\":2017.0,\"5\":\"180\",\"6\":\"\u5176\u5B83\",\"7\":\"Android\",\"8\":\"\",\"9\":\"Helio P25\uFF08MT6757CD\uFF09\",\"10\":\"\u516B\u6838\",\"11\":2.39,\"14\":5.5,\"15\":\"\u5176\u4ED6\",\"16\":1600.0,\"17\":500.0,\"18\":3000.0}");
+	const skus = [{"id":4934619,"spuId":52,"title":"Samsung Galaxy C8\uFF08SM-C7100\uFF094GB+64GB \u58A8\u7389\u9ED1 \u79FB\u52A8\u8054\u901A\u7535\u4FE14G\u624B\u673A \u53CC\u5361\u53CC\u5F85","images":"http:\/\/image.leyou.com\/images\/0\/12\/1524297403725.jpg","price":199900,"ownSpec":"{\"4\":\"\u58A8\u7389\u9ED1\",\"12\":\"4GB\",\"13\":\"64GB\"}","indexes":"0_0_0","enable":true,"createTime":"2018-04-21T15:56:44.000+02:00","lastUpdateTime":"2018-04-21T15:56:44.000+02:00","stock":9999},{"id":5005717,"spuId":52,"title":"Samsung Galaxy C8\uFF08SM-C7100\uFF094GB+64GB \u67AB\u53F6\u91D1 \u79FB\u52A8\u8054\u901A\u7535\u4FE14G\u624B\u673A \u53CC\u5361\u53CC\u5F85","images":"http:\/\/image.leyou.com\/images\/6\/3\/1524297404210.jpg","price":199900,"ownSpec":"{\"4\":\"\u67AB\u53F6\u91D1\",\"12\":\"4GB\",\"13\":\"64GB\"}","indexes":"1_0_0","enable":true,"createTime":"2018-04-21T15:56:44.000+02:00","lastUpdateTime":"2018-04-21T15:56:44.000+02:00","stock":9999},{"id":5005723,"spuId":52,"title":"Samsung Galaxy C8\uFF08SM-C7100\uFF094GB+64GB \u8537\u8587\u7C89 \u79FB\u52A8\u8054\u901A\u7535\u4FE14G\u624B\u673A \u53CC\u5361\u53CC\u5F85","images":"http:\/\/image.leyou.com\/images\/3\/11\/1524297404570.jpg","price":179900,"ownSpec":"{\"4\":\"\u8537\u8587\u7C89\",\"12\":\"4GB\",\"13\":\"64GB\"}","indexes":"2_0_0","enable":true,"createTime":"2018-04-21T15:56:45.000+02:00","lastUpdateTime":"2018-04-21T15:56:45.000+02:00","stock":9999}];
+	const indexes = {};
+	Object.keys(paramMap).forEach(param => {indexes[param] = 0}); //如此indexes中记录了所有的选中项的下标，默认值是0
+</script>
+<script>
+    var itemVm = new Vue({
+        el:"#itemApp",
+        data:{
+        	ly,
+			specialSpec,
+			paramMap,
+			indexes, //保存特殊规格参数的选中项的数据模型
+			skus,
+			genericSpec,
+			num: 1
+        },
+		computed: {
+			sku(){
+				const index = Object.values(this.indexes).join("_");
+				//将用户选择的sku的下标与数据库表中的indexes做对比，找到相同的sku返回
+				return this.skus.find(sku => sku.indexes == index);
+			},
+			images(){
+				//判断图片集合是否为空
+				return this.sku.images ? this.sku.images.split(",") : "";
+			},
+			groups(){
+				groups.forEach(group => {
+					group.params.forEach(param => {
+						if (param.generic){
+							//value在spuDetail的generic_spec的字段中
+							//给param添加一个属性名value,其属性名
+							param.value = this.genericSpec[param.id];
+						}else {
+							// value在sku的own_spec中
+							param.value = JSON.parse(this.sku.ownSpec)[param.id];
+						}
+					});
+				});
+				return groups;
+			}
+		},
+		methods: {
+        	addCart(){
+				//Evalúa si ha iniciado sesión
+				ly.verify().then(({data}) => {
+							//Sesión iniciada: consultar al MongoDB
+							ly.http.post("/cart", {skuId:this.sku.id, num:this.num}).then(() => {
+								window.location = "http://www.leyou.com/cart.html";
+							});
+						})
+						.catch(() => {
+							//Sesión no iniciada: consultar al localStorage
+							//Consultar si ya existen datos en el localStorage
+							let carts = ly.store.get("PLY_CART") || [];
+							//Evalúa si el artículo actual ya existe en el carts
+							let cart = carts.find(cart => cart.skuId === this.sku.id);
+							if (cart){
+								//Sí, acumular la cantidad
+								cart.num += this.num;
+							}else {
+								//No, añadir el artículo actual al localStorage
+								carts.push({
+									skuId: this.sku.id,
+									image: this.images[0],
+									title: this.sku.title,
+									ownSpec: this.sku.ownSpec,
+									price: this.sku.price,
+									num: this.num,
+								});
+							}
+							ly.store.set("PLY_CART", carts);
+							window.location = "http://www.leyou.com/cart.html";
+						});
+
+			},
+			incr() {
+				this.num ++;
+			},
+			decr() {
+				if (this.num > 1){
+					this.num --;
+				}
+			},
+		},
+        components:{
+            lyTop: () => import('/js/pages/top.js')
+        }
+    });
+</script>
+
+<script type="text/javascript" src="/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#service").hover(function(){
+		$(".service").show();
+	},function(){
+		$(".service").hide();
+	});
+	$("#shopcar").hover(function(){
+		$("#shopcarlist").show();
+	},function(){
+		$("#shopcarlist").hide();
+	});
+
+})
+</script>
+<script type="text/javascript" src="/js/model/cartModel.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.jqzoom/zoom.js"></script>
+<script type="text/javascript" src="index/index.js"></script>
+<script>
+	const a = [{"id":1,"cid":76,"name":"General","params":[{"id":1,"cid":76,"groupId":1,"name":"Marca","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":2,"cid":76,"groupId":1,"name":"Modelo","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":3,"cid":76,"groupId":1,"name":"Fecha de fabricaci\u00F3n","numeric":true,"unit":"A\u00F1o","generic":true,"searching":false,"segments":""}]},{"id":2,"cid":76,"name":"Informaci\u00F3n de producto","params":[{"id":4,"cid":76,"groupId":2,"name":"Color","numeric":false,"unit":"","generic":false,"searching":false,"segments":""},{"id":5,"cid":76,"groupId":2,"name":"Peso\uFF08g\uFF09","numeric":true,"unit":"g","generic":true,"searching":false,"segments":""},{"id":6,"cid":76,"groupId":2,"name":"Material de m\u00F3vil","numeric":false,"unit":"","generic":true,"searching":false,"segments":""}]},{"id":3,"cid":76,"name":"Sistema operativo","params":[{"id":7,"cid":76,"groupId":3,"name":"Sistema operativo","numeric":false,"unit":"","generic":true,"searching":true,"segments":""}]},{"id":4,"cid":76,"name":"Processor chip","params":[{"id":8,"cid":76,"groupId":4,"name":"Marca de procesador","numeric":false,"unit":"","generic":true,"searching":true,"segments":""},{"id":9,"cid":76,"groupId":4,"name":"Modelo de procesador","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":10,"cid":76,"groupId":4,"name":"Procesadores Intel Core","numeric":false,"unit":"","generic":true,"searching":true,"segments":""},{"id":11,"cid":76,"groupId":4,"name":"Procesador","numeric":true,"unit":"GHz","generic":true,"searching":true,"segments":"0-1.0,1.0-1.5,1.5-2.0,2.0-2.5,2.5-"}]},{"id":5,"cid":76,"name":"Memoria interna","params":[{"id":12,"cid":76,"groupId":5,"name":"Memoria interna","numeric":false,"unit":"","generic":false,"searching":true,"segments":""},{"id":13,"cid":76,"groupId":5,"name":"Memoria RAM","numeric":false,"unit":"","generic":false,"searching":true,"segments":""}]},{"id":6,"cid":76,"name":"C\u00E1mara","params":[{"id":16,"cid":76,"groupId":6,"name":"C\u00E1mara frontal","numeric":true,"unit":"mp","generic":true,"searching":true,"segments":"0-500,500-1000,1000-1500,1500-2000,2500-"},{"id":17,"cid":76,"groupId":6,"name":"C\u00E1mara trasera","numeric":true,"unit":"mp","generic":true,"searching":true,"segments":"0-500,500-1000,1000-1500,1500-2000,2500-"}]},{"id":7,"cid":76,"name":"Bater\u00EDa","params":[{"id":18,"cid":76,"groupId":7,"name":"Bater\u00EDa\uFF08mAh\uFF09","numeric":true,"unit":"mAh","generic":true,"searching":true,"segments":"0-2000,2000-3000,3000-4000,4000-"}]},{"id":11,"cid":76,"name":"Pantalla","params":[{"id":14,"cid":76,"groupId":11,"name":"Dimensiones","numeric":true,"unit":"mm","generic":true,"searching":true,"segments":"0-4.0,4.0-5.0,5.0-5.5,5.5-6.0,6.0-"},{"id":15,"cid":76,"groupId":11,"name":"Resoluci\u00F3n c\u00E1mara frontal","numeric":false,"unit":"","generic":true,"searching":false,"segments":""}]}];
+	const b = {"4":"Color","12":"Memoria interna","13":"Memoria RAM"};
+	const c = [{"name":"Electr\u00F3nica","id":74},{"name":"Telefon\u00EDa","id":75},{"name":"M\u00F3viles","id":76}];
+	const d = {"id":52,"brandId":15127,"cid1":74,"cid2":75,"cid3":76,"title":"Samsung Galaxy C8\uFF08SM-C7100\uFF094GB+64GB ","subTitle":"5.5\u82F1\u5BF8\uFF0C\u540E\u7F6E\u53CC\u6444\u50CF\u5934\uFF0C\u9762\u90E8\u8BC6\u522B+\u6307\u7EB9\u8BC6\u522B\uFF01<a href='https:\/\/sale.jd.com\/act\/T15MnRgiasWe8L.html' target='_blank'>SamsungS9\u9707\u64BC\u4E0A\u5E02\u8BE6\u60C5\u731B\u6233>><\/a>","saleable":true,"valid":true,"createTime":"2018-04-21T15:56:45.000+02:00","lastUpdateTime":"2018-04-21T15:56:45.000+02:00"};
+	const e = {"spuId":52,"description":"<div style=\"width:750px; margin:auto;\"> \n <div align=\"center\"> \n  <div style=\"text-align:center;\"> \n   <img src=\"\/\/img20.360buyimg.com\/cms\/jfs\/t17407\/254\/571958006\/22780\/593f9b27\/5a969fb4Nfce9ac87.jpg\" \/> \n  <\/div> \n  <img src=\"\/\/img11.360buyimg.com\/cms\/jfs\/t8656\/132\/1480203016\/85514\/419a377d\/59ba4decNc52fbb5e.jpg\" width=\"750\" height=\"476\" alt=\"\" \/> \n  <img src=\"\/\/img14.360buyimg.com\/cms\/jfs\/t8455\/194\/1520294882\/59667\/32c38810\/59ba4df0N9f352c58.jpg\" width=\"750\" height=\"361\" alt=\"\" \/> \n  <img src=\"\/\/img12.360buyimg.com\/cms\/jfs\/t9151\/82\/1472463468\/299343\/a97e28db\/59ba4de1Nce52b496.jpg\" width=\"750\" height=\"655\" alt=\"\" \/> \n  <img src=\"\/\/img11.360buyimg.com\/cms\/jfs\/t8749\/72\/1473499496\/221631\/d68a87f7\/59ba4df8N4c56d1aa.jpg\" width=\"750\" height=\"687\" alt=\"\" \/> \n  <img src=\"\/\/img10.360buyimg.com\/cms\/jfs\/t9406\/152\/1496676921\/260156\/33c52d5c\/59ba4dfcNe5ee4452.jpg\" width=\"750\" height=\"759\" alt=\"\" \/> \n  <img src=\"\/\/img14.360buyimg.com\/cms\/jfs\/t8584\/170\/1433607437\/87943\/e8f98aba\/59ba4e00N9eb4e3e9.jpg\" width=\"750\" height=\"457\" alt=\"\" \/> \n  <img src=\"\/\/img12.360buyimg.com\/cms\/jfs\/t8272\/145\/1451949437\/96198\/d449cf42\/59ba4e06N4978e8ca.jpg\" width=\"750\" height=\"500\" alt=\"\" \/> \n  <img src=\"\/\/img11.360buyimg.com\/cms\/jfs\/t8617\/264\/1430514317\/251370\/c0a987cb\/59ba4eb6Nca5a5d79.jpg\" width=\"750\" height=\"572\" alt=\"\" \/> \n  <img src=\"\/\/img14.360buyimg.com\/cms\/jfs\/t9154\/284\/1474806142\/83062\/16910d22\/59ba4ebbN0fd0a7ef.jpg\" width=\"750\" height=\"372\" alt=\"\" \/> \n  <img src=\"\/\/img13.360buyimg.com\/cms\/jfs\/t8920\/172\/1445613881\/204986\/e036388e\/59ba4ec0Ndb264ca5.jpg\" width=\"750\" height=\"536\" alt=\"\" \/> \n  <img src=\"\/\/img11.360buyimg.com\/cms\/jfs\/t8866\/234\/1487384986\/157098\/e8adb649\/59ba4ecbNa23c0540.jpg\" width=\"750\" height=\"703\" alt=\"\" \/> \n  <img src=\"\/\/img10.360buyimg.com\/cms\/jfs\/t8590\/319\/1487902033\/262761\/f6d0d032\/59ba4ed0Nd3ec8531.jpg\" width=\"750\" height=\"803\" alt=\"\" \/> \n  <img src=\"\/\/img14.360buyimg.com\/cms\/jfs\/t8905\/257\/1459323378\/232166\/6e2355e1\/59ba4ed4Nc6bd7aa1.jpg\" width=\"750\" height=\"692\" alt=\"\" \/> \n  <img src=\"\/\/img12.360buyimg.com\/cms\/jfs\/t9016\/248\/1489775041\/166122\/824fb8ed\/59ba4ed9N4d3384bd.jpg\" width=\"750\" height=\"704\" alt=\"\" \/> \n  <div style=\"text-align:center;\"> \n   <img src=\"\/\/img12.360buyimg.com\/cms\/jfs\/t15778\/326\/2208462414\/72689\/1dedb894\/5a969fd7Nb68d26cf.jpg\" \/> \n  <\/div> \n <\/div> \n<\/div><br\/>","specialSpec":"{\"4\":[\"\u58A8\u7389\u9ED1\",\"\u67AB\u53F6\u91D1\",\"\u8537\u8587\u7C89\"],\"12\":[\"4GB\"],\"13\":[\"64GB\"]}","genericSpec":"{\"1\":\"\u4E09\u661F\uFF08SAMSUNG\uFF09\",\"2\":\"SM-C7100\",\"3\":2017.0,\"5\":\"180\",\"6\":\"\u5176\u5B83\",\"7\":\"Android\",\"8\":\"\",\"9\":\"Helio P25\uFF08MT6757CD\uFF09\",\"10\":\"\u516B\u6838\",\"11\":2.39,\"14\":5.5,\"15\":\"\u5176\u4ED6\",\"16\":1600.0,\"17\":500.0,\"18\":3000.0}","packingList":"\u624B\u673A*1\uFF1B\u5145\u7535\u5668*1\uFF1B\u8033\u673A*1\uFF1B\u6570\u636E\u7EBF*1\uFF1B\u5361\u9488*1\uFF1B\u4FDD\u4FEE\u5361*1\uFF1B\u8BF4\u660E\u4E66*1\uFF1B\u793C\u54C1\u5361*1 \u63D0\u793A\uFF1A\u6536\u8D27\u540E\u5C06\u5305\u88C5\u76D2\u5185\u7684\u6240\u6709\u7269\u54C1\u52A1\u5FC5\u4FDD\u7559\uFF01\u7533\u8BF7\u9000\u8D27\u65F6\u8FD8\u8BF7\u6574\u5957\u7533\u8BF7\u8FD4\u56DE\u7ED9\u9500\u552E\u5546\u3002","afterService":"\u672C\u4EA7\u54C1\u5168\u56FD\u8054\u4FDD\uFF0C\u4EAB\u53D7\u4E09\u5305\u670D\u52A1\uFF0C\u8D28\u4FDD\u671F\u4E3A\uFF1A\u4E00\u5E74\u8D28\u4FDD"};
+	const f = [{"id":4934619,"spuId":52,"title":"Samsung Galaxy C8\uFF08SM-C7100\uFF094GB+64GB \u58A8\u7389\u9ED1 \u79FB\u52A8\u8054\u901A\u7535\u4FE14G\u624B\u673A \u53CC\u5361\u53CC\u5F85","images":"http:\/\/image.leyou.com\/images\/0\/12\/1524297403725.jpg","price":199900,"ownSpec":"{\"4\":\"\u58A8\u7389\u9ED1\",\"12\":\"4GB\",\"13\":\"64GB\"}","indexes":"0_0_0","enable":true,"createTime":"2018-04-21T15:56:44.000+02:00","lastUpdateTime":"2018-04-21T15:56:44.000+02:00","stock":9999},{"id":5005717,"spuId":52,"title":"Samsung Galaxy C8\uFF08SM-C7100\uFF094GB+64GB \u67AB\u53F6\u91D1 \u79FB\u52A8\u8054\u901A\u7535\u4FE14G\u624B\u673A \u53CC\u5361\u53CC\u5F85","images":"http:\/\/image.leyou.com\/images\/6\/3\/1524297404210.jpg","price":199900,"ownSpec":"{\"4\":\"\u67AB\u53F6\u91D1\",\"12\":\"4GB\",\"13\":\"64GB\"}","indexes":"1_0_0","enable":true,"createTime":"2018-04-21T15:56:44.000+02:00","lastUpdateTime":"2018-04-21T15:56:44.000+02:00","stock":9999},{"id":5005723,"spuId":52,"title":"Samsung Galaxy C8\uFF08SM-C7100\uFF094GB+64GB \u8537\u8587\u7C89 \u79FB\u52A8\u8054\u901A\u7535\u4FE14G\u624B\u673A \u53CC\u5361\u53CC\u5F85","images":"http:\/\/image.leyou.com\/images\/3\/11\/1524297404570.jpg","price":179900,"ownSpec":"{\"4\":\"\u8537\u8587\u7C89\",\"12\":\"4GB\",\"13\":\"64GB\"}","indexes":"2_0_0","enable":true,"createTime":"2018-04-21T15:56:45.000+02:00","lastUpdateTime":"2018-04-21T15:56:45.000+02:00","stock":9999}];
+	const g = {"id":15127,"name":"Samsung\uFF08SAMSUNG\uFF09","image":"http:\/\/img14.360buyimg.com\/popshop\/jfs\/t2701\/34\/484677369\/7439\/ee13e8fa\/5716e2c4Nc925baf3.jpg","letter":"S"};
+</script>
+</body>
+
+</html>

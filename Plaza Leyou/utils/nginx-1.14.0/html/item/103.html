@@ -1,0 +1,733 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>Plaza Leyou -- Detalles de artículo</title>
+	 <link rel="icon" href="/assets/img/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pages-item.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pages-zoom.css" />
+    <link rel="stylesheet" type="text/css" href="/css/widget-cartPanelView.css" />
+
+	<style type="text/css">
+	.goods-intro-list li {
+		display: inline-block;
+		width: 300px;
+	}
+       .Ptable {
+           margin: 10px 0;
+       }
+       .Ptable-item {
+            padding: 12px 0;
+            line-height: 220%;
+            color: #999;
+            font-size: 12px;
+               border-bottom: 1px solid #eee;
+        }
+       .Ptable-item h3 {
+           width: 110px;
+           text-align: right;
+       }
+       .Ptable-item h3, .package-list h3 {
+           font-weight: 400;
+           font-size: 12px;
+           float: left;
+       }
+       h3 {
+           display: block;
+           font-size: 1.17em;
+           -webkit-margin-before: 1em;
+           -webkit-margin-after: 1em;
+           -webkit-margin-start: 0px;
+           -webkit-margin-end: 0px;
+           font-weight: bold;
+       }
+       .Ptable-item dl {
+           margin-left: 110px;
+       }
+       dl {
+           display: block;
+           -webkit-margin-before: 1em;
+           -webkit-margin-after: 1em;
+           -webkit-margin-start: 0px;
+           -webkit-margin-end: 0px;
+       }
+       .Ptable-item dt {
+           width: 160px;
+           float: left;
+           text-align: right;
+           padding-right: 5px;
+       }
+       .Ptable-item dd {
+           margin-left: 210px;
+       }
+       dd {
+           display: block;
+           -webkit-margin-start: 40px;
+       }
+       .package-list {
+           padding: 12px 0;
+           line-height: 220%;
+           color: #999;
+           font-size: 12px;
+           margin-top: -1px;
+       }
+       .package-list h3 {
+           width: 130px;
+           text-align: right;
+       }
+       .package-list p {
+           margin-left: 155px;
+           padding-right: 50px;
+       }
+</style>
+
+</head>
+
+<body>
+
+<!-- 头部栏位 -->
+<!--页面顶部，由js动态加载-->
+<div id="itemApp">
+	<div id="nav-bottom">
+		<ly-top />
+	</div>
+	<div class="py-container">
+		<div id="item">
+			<div class="crumb-wrap">
+				<ul class="sui-breadcrumb">
+					<li>
+						<a href="#">Electrónica</a>
+					</li>
+					<li>
+						<a href="#">Telefonía</a>
+					</li>
+					<li>
+						<a href="#">Móviles</a>
+					</li>
+
+					<li>
+						<a href="#">Huawei（HUAWEI）</a>
+					</li>
+					<li class="active">Huawei（HUAWEI） Honor7X 畅玩7x 手机 </li>
+				</ul>
+			</div>
+			<!--product-info-->
+			<div class="product-info">
+				<div class="fl preview-wrap">
+					<!--放大镜效果-->
+					<div class="zoom">
+						<!--默认第一个预览-->
+						<div id="preview" class="spec-preview">
+							<span class="jqzoom">
+								<img :jqimg="images[0]" :src="images[0]" width="400px" height="400px"/>
+							</span>
+						</div>
+						<!--下方的缩略图-->
+						<div class="spec-scroll">
+							<a class="prev">&lt;</a>
+							<!--左右按钮-->
+							<div class="items">
+								<ul>
+										<li v-for="(image, index) in images":key="index">
+											<img :src="image" :bimg="image" onmousemove="preview(this)"/>
+										</li>
+								</ul>
+							</div>
+							<a class="next">&gt;</a>
+						</div>
+					</div>
+				</div>
+				<div class="fr itemInfo-wrap">
+					<div class="sku-name">
+						<h4 v-text="sku.title"></h4>
+					</div>
+					<div class="news"><span>送Honor原装耳机+一万毫安电源限64/128G版本!现货速发!<a href="https://item.jd.com/26129180943.html" target="_blank">Honor7C点这</a></span></div>
+					<div class="summary">
+						<div class="summary-wrap">
+							<div class="fl title"><i>Precio</i></div>
+							<div class="fl price">
+								<i>¥</i><em v-text="ly.formatPrice(sku.price)"></em><span>  Promoción</span>
+							</div>
+							<div class="fr remark"><i>Valoración </i><em>612188</em></div>
+						</div>
+						<div class="summary-wrap">
+							<div class="fl title">
+								<i>Promoción</i>
+							</div>
+							<div class="fl fix-width">
+								<i class="red-bg">Black Friday</i>
+								<em class="t-gray">20% de descuento a partir de 1 Nov</em>
+							</div>
+						</div>
+					</div>
+					<div class="support">
+						<div class="summary-wrap">
+							<div class="fl title">
+								<i>Ventajas</i>
+							</div>
+							<div class="fl fix-width">
+								<em class="t-gray">Por el cambio de dispositivos usados, descuento por 50EUR</em>
+							</div>
+						</div>
+						<div class="summary-wrap">
+							<div class="fl title">
+								<i>Enviar gratis a</i>
+							</div>
+							<div class="fl fix-width">
+								<em class="t-gray">Península <span>Disponible</span></em>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix choose">
+						<div id="specification" class="summary-wrap clearfix">
+							<dl v-for="(value, key, index) in specialSpec":key="index">
+								<dt>
+									<div class="fl title">
+									<i v-text="paramMap[key]"></i>
+								</div>
+								</dt>
+								<dd v-for="(v, i) in value":key="i">
+									<a href="javascript:;" :class="{selected: i == indexes[key]}"  v-text="v" @click="indexes[key]=i">
+										<span title="Cancelar">&nbsp;</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+
+						<div class="summary-wrap">
+							<div class="fl title">
+								<div class="control-group">
+									<div class="controls">
+										<input autocomplete="off" type="text" v-model="num" disabled value="1" minnum="1" class="itxt" />
+										<a href="javascript:void(0)" class="increment plus" @click="incr()">+</a>
+										<a href="javascript:void(0)" class="increment mins" @click="decr()">-</a>
+									</div>
+								</div>
+							</div>
+							<div class="fl">
+								<ul class="btn-choose unstyled">
+									<li>
+										<a href="javascript:void(0);" target="_self" @click="addCart"
+										   class="sui-btn btn-danger addshopcar" style="background-color: #bf3553">
+											Añadir a la cesta
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--product-detail-->
+			<div class="clearfix product-detail">
+				<div class="fl aside">
+					<ul class="sui-nav nav-tabs tab-wraped">
+						<li class="active">
+							<a href="#index" data-toggle="tab">
+								<span>相关分类</span>
+							</a>
+						</li>
+						<li>
+							<a href="#profile" data-toggle="tab">
+								<span>推荐品牌</span>
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content tab-wraped">
+						<div id="index" class="tab-pane active">
+							<ul class="part-list unstyled">
+								<li>手机</li>
+								<li>手机壳</li>
+								<li>内存卡</li>
+								<li>Iphone配件</li>
+								<li>贴膜</li>
+								<li>手机耳机</li>
+								<li>移动电源</li>
+								<li>平板电脑</li>
+							</ul>
+							<ul class="goods-list unstyled">
+								<li>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part01.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part02.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part03.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part02.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="/img/_/part03.png" />
+										</div>
+										<div class="attr">
+											<em>Apple苹果iPhone 6s (A1699)</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>6088.00</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div id="profile" class="tab-pane">
+							<p>推荐品牌</p>
+						</div>
+					</div>
+				</div>
+				<div class="fr detail">
+					<div class="clearfix fitting">
+						<h4 class="kt">选择搭配</h4>
+						<div class="good-suits">
+							<div class="fl master">
+								<div class="list-wrap">
+									<div class="p-img">
+										<img src="/img/_/l-m01.png" />
+									</div>
+									<em>￥5299</em>
+									<i>+</i>
+								</div>
+							</div>
+							<div class="fl suits">
+								<ul class="suit-list">
+									<li class="">
+										<div id="">
+											<img src="/img/_/dp01.png" />
+										</div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>39</span>
+  </label>
+									</li>
+									<li class="">
+										<div id=""><img src="/img/_/dp02.png" /> </div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>50</span>
+  </label>
+									</li>
+									<li class="">
+										<div id=""><img src="/img/_/dp03.png" /></div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>59</span>
+  </label>
+									</li>
+									<li class="">
+										<div id=""><img src="/img/_/dp04.png" /></div>
+										<i>Feless费勒斯VR</i>
+										<label data-toggle="checkbox" class="checkbox-pretty">
+    <input type="checkbox"><span>99</span>
+  </label>
+									</li>
+								</ul>
+							</div>
+							<div class="fr result">
+								<div class="num">已选购0件商品</div>
+								<div class="price-tit"><strong>套餐价</strong></div>
+								<div class="price">￥5299</div>
+								<button class="sui-btn  btn-danger addshopcar">加入购物车</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-main intro">
+						<ul class="sui-nav nav-tabs tab-wraped">
+							<li class="active">
+								<a href="#one" data-toggle="tab">
+									<span>General</span>
+								</a>
+							</li>
+							<li>
+								<a href="#two" data-toggle="tab">
+									<span>Especificaciones</span>
+								</a>
+							</li>
+							<li>
+								<a href="#three" data-toggle="tab">
+									<span>Servicio posventa</span>
+								</a>
+							</li>
+							<li>
+								<a href="#four" data-toggle="tab">
+									<span>Valoracions de cliente</span>
+								</a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+						<div class="tab-content tab-wraped">
+							<div id="one" class="tab-pane active">
+								<!--展示的是规格属性列表（不展示特有属性）-->
+								<ul class="goods-intro-list unstyled" style="list-style: none;"
+									v-for="group in groups":key="group.id">
+									<li v-for="param in group.params":key="param.id">
+										{{param.name}} : {{param.value}}
+									</li>
+								</ul>
+								<!--商品详情-->
+								<div class="intro-detail">
+									<p  style="margin: 0 auto;"><div align="center"><img alt="" src="//img10.360buyimg.com/imgzone/jfs/t8671/222/1467175489/71564/f39ed996/59ba12f2Nd0a1fcd2.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10441/174/2034835390/436797/6a8fe7ad/59ed5b78Na1cf37ce.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t11599/13/328202066/454111/254ba00/59ed5b7fN14999629.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10642/303/2032650034/183190/fc2d3178/59ed5b87Nf90ee0db.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10450/184/2035588261/308862/d6e4ffc8/59ed5b8fNb9c358c5.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t7597/220/3420290847/376646/410eb94f/59ed5b8fNa30c8c69.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t9979/282/2056216426/331057/b9268d18/59ed5b8aN9b4b12cc.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10327/224/2029934351/116449/584c7565/59ed5b8fN05163dcb.jpg" /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10738/109/1313455948/48527/d39deb39/59decbabN71b1bc98.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t9535/107/1285676624/180327/e8308ac7/59decbb0Nf8a8d96e.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t9817/233/1276694147/183122/3bd8a98/59decbb0Nbb222c26.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t9571/126/1282180554/133916/a8441355/59decbadN30e60919.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10699/93/1282136754/136439/ceb76c4a/59decbacNe6e9df20.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10270/136/1271757259/127183/fbb3aa5a/59decba8N5d96a75a.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10234/253/1255503647/243595/17dbe513/59decbb0N895d9b63.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10663/165/1284445148/154027/8cffc900/59decbb1N7414c863.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10639/121/1297753071/91186/8568256/59decb9eNc9280c03.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10621/149/1309833639/132808/bb82483b/59decbb1N8e903fdf.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10237/205/1232914360/154335/213e5c09/59decbb1N40cc5031.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10699/96/1249761818/150693/45b79c6e/59decbb1N12c9957c.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10165/200/1285470275/121840/a1662d14/59decb92N7ee6ec08.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10126/236/1250972823/111885/36210628/59decbb1Ndd43e9e1.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t9601/139/1285624192/170761/7de38b98/59decbaeN45e499f8.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10294/95/1328386066/70522/a65f8d6c/59decba9N30bdfb12.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10807/13/1238870272/48581/8d2f5743/59decba9N94471d7f.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10984/102/1280659214/382367/98844af7/59decbb1Na9ae541f.jpg" /><br /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10054/138/1288579821/286380/acd0cb2c/59decc1eNb6fc68ee.jpg" /><br /><img alt="" src="//img10.360buyimg.com/imgzone/jfs/t9355/249/1446998247/240493/5cc1a0d2/59ba130cN10825ce4.jpg" /><img alt="" src="//img30.360buyimg.com/popWaterMark/jfs/t10579/122/1266196440/654115/f4203680/59decc36Nbd12e03f.jpg" /></div><br/></p>
+								</div>
+							</div>
+							<div id="two" class="tab-pane">
+								<div class="Ptable">
+    <div class="Ptable-item" v-for="group in groups":key="group.id">
+        <h3 v-text="group.name"></h3>
+        <dl v-for="param in group.params":key="param.id">
+            <dt v-text="param.name"></dt><dd v-text="param.value"></dd>
+        </dl>
+    </div>
+</div>
+<div class="package-list">
+    <h3>Packing List</h3>
+    <p>暂无</p>
+</div>
+
+							</div>
+							<div id="three" class="tab-pane">
+								<p>Servicio posventa</p>
+								<p>本产品全国联保，享受三包服务，质保期为：一年质保</p>
+							</div>
+							<div id="four" class="tab-pane">
+								<p>Valoraciones de cliente</p>
+							</div>
+							<div id="five" class="tab-pane">
+								<p>手机社区</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--like-->
+			<div class="clearfix"></div>
+			<div class="like">
+				<h4 class="kt">猜你喜欢</h4>
+				<div class="like-list">
+					<ul class="yui3-g">
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike01.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>3699.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有6人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike02.png" />
+								</div>
+								<div class="attr">
+									<em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4388.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike03.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike04.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike05.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6">
+							<div class="list-wrap">
+								<div class="p-img">
+									<img src="/img/_/itemlike06.png" />
+								</div>
+								<div class="attr">
+									<em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+								</div>
+								<div class="commit">
+									<i class="command">已有700人评价</i>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<script src="/js/vue/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+	let groups = [{"id":1,"cid":76,"name":"General","params":[{"id":1,"cid":76,"groupId":1,"name":"Marca","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":2,"cid":76,"groupId":1,"name":"Modelo","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":3,"cid":76,"groupId":1,"name":"Fecha de fabricaci\u00F3n","numeric":true,"unit":"A\u00F1o","generic":true,"searching":false,"segments":""}]},{"id":2,"cid":76,"name":"Informaci\u00F3n de producto","params":[{"id":4,"cid":76,"groupId":2,"name":"Color","numeric":false,"unit":"","generic":false,"searching":false,"segments":""},{"id":5,"cid":76,"groupId":2,"name":"Peso","numeric":true,"unit":"g","generic":true,"searching":false,"segments":""},{"id":6,"cid":76,"groupId":2,"name":"Material de m\u00F3vil","numeric":false,"unit":"","generic":true,"searching":false,"segments":""}]},{"id":3,"cid":76,"name":"Sistema operativo","params":[{"id":7,"cid":76,"groupId":3,"name":"Sistema operativo","numeric":false,"unit":"","generic":true,"searching":true,"segments":""}]},{"id":4,"cid":76,"name":"Processor chip","params":[{"id":8,"cid":76,"groupId":4,"name":"Procesador","numeric":false,"unit":"","generic":true,"searching":true,"segments":""},{"id":9,"cid":76,"groupId":4,"name":"Modelo de procesador","numeric":false,"unit":"","generic":true,"searching":false,"segments":""},{"id":10,"cid":76,"groupId":4,"name":"Procesadores Intel Core","numeric":false,"unit":"","generic":true,"searching":true,"segments":""},{"id":11,"cid":76,"groupId":4,"name":"Capacidad de Procesador","numeric":true,"unit":"GHz","generic":true,"searching":true,"segments":"0-1.0,1.0-1.5,1.5-2.0,2.0-2.5,2.5-"}]},{"id":5,"cid":76,"name":"Memoria interna","params":[{"id":12,"cid":76,"groupId":5,"name":"Memoria interna","numeric":false,"unit":"","generic":false,"searching":true,"segments":""},{"id":13,"cid":76,"groupId":5,"name":"Memoria RAM","numeric":false,"unit":"","generic":false,"searching":true,"segments":""}]},{"id":6,"cid":76,"name":"C\u00E1mara","params":[{"id":16,"cid":76,"groupId":6,"name":"C\u00E1mara frontal","numeric":true,"unit":"MP","generic":true,"searching":true,"segments":"0-5,5-10,10-15,15-20,25-"},{"id":17,"cid":76,"groupId":6,"name":"C\u00E1mara trasera","numeric":true,"unit":"MP","generic":true,"searching":true,"segments":"0-5,5-10,10-15,15-20,25-"}]},{"id":7,"cid":76,"name":"Bater\u00EDa","params":[{"id":18,"cid":76,"groupId":7,"name":"Bater\u00EDa\uFF08mAh\uFF09","numeric":true,"unit":"mAh","generic":true,"searching":true,"segments":"0-2000,2000-3000,3000-4000,4000-"}]},{"id":11,"cid":76,"name":"Pantalla","params":[{"id":14,"cid":76,"groupId":11,"name":"Dimensiones","numeric":true,"unit":"mm","generic":true,"searching":true,"segments":"0-4.0,4.0-5.0,5.0-5.5,5.5-6.0,6.0-"},{"id":15,"cid":76,"groupId":11,"name":"Resoluci\u00F3n c\u00E1mara frontal","numeric":false,"unit":"","generic":true,"searching":false,"segments":""}]}];
+	const paramMap = {"4":"Color","12":"Memoria interna","13":"Memoria RAM"};
+	const specialSpec = JSON.parse("{\"4\":[\"\u5E7B\u591C\u9ED1\",\"\u94C2\u5149\u91D1\",\"\u6781\u5149\u84DD\",\"\u9B45\u7130\u7EA2\u8272\"],\"12\":[\"4GB\"],\"13\":[\"128GB\"]}");
+	const genericSpec = JSON.parse("{\"1\":\"\u5176\u5B83\",\"2\":\"0\",\"3\":2017.0,\"5\":156,\"6\":\"\u5176\u5B83\",\"7\":\"Android\",\"8\":\"\",\"9\":\"--\",\"10\":\"\u516B\u6838\",\"11\":1.8,\"14\":3.0,\"15\":\"\u5176\u4ED6\",\"16\":800.0,\"17\":200.0,\"18\":3000}");
+	const skus = [{"id":17967388001,"spuId":103,"title":"Huawei\uFF08HUAWEI\uFF09 Honor7X \u7545\u73A97x \u624B\u673A \u6781\u5149\u84DD \u5168\u7F51\u901A(4G+64G)","images":"http:\/\/image.leyou.com\/images\/8\/1\/1524297520394.jpg","price":159900,"ownSpec":"{\"4\":\"\u6781\u5149\u84DD\",\"12\":\"4GB\",\"13\":\"128GB\"}","indexes":"2_0_0","enable":true,"createTime":"2018-04-21T15:58:40.000+02:00","lastUpdateTime":"2018-04-21T15:58:40.000+02:00","stock":9999},{"id":17967388003,"spuId":103,"title":"Huawei\uFF08HUAWEI\uFF09 Honor7X \u7545\u73A97x \u624B\u673A \u94C2\u5149\u91D1 \u5168\u7F51\u901A(4G+64G)","images":"http:\/\/image.leyou.com\/images\/12\/15\/1524297520024.jpg","price":159900,"ownSpec":"{\"4\":\"\u94C2\u5149\u91D1\",\"12\":\"4GB\",\"13\":\"128GB\"}","indexes":"1_0_0","enable":true,"createTime":"2018-04-21T15:58:40.000+02:00","lastUpdateTime":"2018-04-21T15:58:40.000+02:00","stock":9999},{"id":17967388005,"spuId":103,"title":"Huawei\uFF08HUAWEI\uFF09 Honor7X \u7545\u73A97x \u624B\u673A \u5E7B\u591C\u9ED1 \u5168\u7F51\u901A(4G+64G)","images":"http:\/\/image.leyou.com\/images\/9\/13\/1524297519504.jpg","price":159900,"ownSpec":"{\"4\":\"\u5E7B\u591C\u9ED1\",\"12\":\"4GB\",\"13\":\"128GB\"}","indexes":"0_0_0","enable":true,"createTime":"2018-04-21T15:58:40.000+02:00","lastUpdateTime":"2018-04-21T15:58:40.000+02:00","stock":9999},{"id":23004480395,"spuId":103,"title":"Huawei\uFF08HUAWEI\uFF09 Honor7X \u7545\u73A97x \u624B\u673A \u9B45\u7130\u7EA2\u8272 \u5168\u7F51\u901A(4G+128G)","images":"http:\/\/image.leyou.com\/images\/1\/0\/1524297520744.jpg","price":179900,"ownSpec":"{\"4\":\"\u9B45\u7130\u7EA2\u8272\",\"12\":\"4GB\",\"13\":\"128GB\"}","indexes":"3_0_0","enable":true,"createTime":"2018-04-21T15:58:41.000+02:00","lastUpdateTime":"2018-04-21T15:58:41.000+02:00","stock":9999}];
+	let indexes = {};
+	Object.keys(paramMap).forEach(param => {indexes[param] = 0}); //如此indexes中记录了所有的选中项的下标，默认值是0
+</script>
+<script>
+    var itemVm = new Vue({
+        el:"#itemApp",
+        data:{
+        	ly,
+			specialSpec,
+			paramMap,
+			indexes, //保存特殊规格参数的选中项的数据模型
+			skus,
+			genericSpec,
+			num: 1
+        },
+		computed: {
+			sku(){
+				const index = Object.values(this.indexes).join("_");
+				//将用户选择的sku的下标与数据库表中的indexes做对比，找到相同的sku返回
+				return this.skus.find(sku => sku.indexes == index);
+			},
+			images(){
+				//判断图片集合是否为空
+				return this.sku.images ? this.sku.images.split(",") : "";
+			},
+			groups(){
+				groups.forEach(group => {
+					group.params.forEach(param => {
+						if (param.generic){
+							//value在spuDetail的generic_spec的字段中
+							//给param添加一个属性名value,其属性名
+							param.value = this.genericSpec[param.id];
+						}else {
+							// value在sku的own_spec中
+							param.value = JSON.parse(this.sku.ownSpec)[param.id];
+						}
+					});
+				});
+				return groups;
+			}
+		},
+		methods: {
+        	addCart(){
+				//Evalúa si ha iniciado sesión
+				ly.verify().then(({data}) => {
+							//Sesión iniciada: consultar al redis
+							ly.http.post("/cart", {skuId:this.sku.id, num:this.num}).then(() => {
+								window.location = "http://www.leyou.com/cart.html";
+							});
+						})
+						.catch(() => {
+							//Sesión no iniciada: consultar al localStorage
+							//Consultar si ya existen datos en el localStorage
+							let carts = ly.store.get("PLY_CART") || [];
+							//Evalúa si el artículo actual ya existe en el carts
+							let cart = carts.find(cart => cart.skuId === this.sku.id);
+							if (cart){
+								//Sí, acumular la cantidad
+								cart.num += this.num;
+							}else {
+								//No, añadir el artículo actual al localStorage
+								carts.push({
+									skuId: this.sku.id,
+									image: this.images[0],
+									title: this.sku.title,
+									ownSpec: this.sku.ownSpec,
+									price: this.sku.price,
+									num: this.num,
+								});
+							}
+							ly.store.set("PLY_CART", carts);
+							window.location = "http://www.leyou.com/cart.html";
+						});
+
+			},
+			incr() {
+				this.num ++;
+			},
+			decr() {
+				if (this.num > 1){
+					this.num --;
+				}
+			},
+		},
+        components:{
+            lyTop: () => import('/js/pages/top.js')
+        }
+    });
+</script>
+
+<script type="text/javascript" src="/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#service").hover(function(){
+		$(".service").show();
+	},function(){
+		$(".service").hide();
+	});
+	$("#shopcar").hover(function(){
+		$("#shopcarlist").show();
+	},function(){
+		$("#shopcarlist").hide();
+	});
+
+})
+</script>
+<script type="text/javascript" src="/js/model/cartModel.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.jqzoom/zoom.js"></script>
+<script type="text/javascript" src="index/index.js"></script>
+<!--<script th:inline="javascript">
+	const a = /*[SpecGroup(id=1, cid=76, name=General, params=[SpecParam(id=1, cid=76, groupId=1, name=Marca, numeric=false, unit=, generic=true, searching=false, segments=), SpecParam(id=2, cid=76, groupId=1, name=Modelo, numeric=false, unit=, generic=true, searching=false, segments=), SpecParam(id=3, cid=76, groupId=1, name=Fecha de fabricación, numeric=true, unit=Año, generic=true, searching=false, segments=)]), SpecGroup(id=2, cid=76, name=Información de producto, params=[SpecParam(id=4, cid=76, groupId=2, name=Color, numeric=false, unit=, generic=false, searching=false, segments=), SpecParam(id=5, cid=76, groupId=2, name=Peso, numeric=true, unit=g, generic=true, searching=false, segments=), SpecParam(id=6, cid=76, groupId=2, name=Material de móvil, numeric=false, unit=, generic=true, searching=false, segments=)]), SpecGroup(id=3, cid=76, name=Sistema operativo, params=[SpecParam(id=7, cid=76, groupId=3, name=Sistema operativo, numeric=false, unit=, generic=true, searching=true, segments=)]), SpecGroup(id=4, cid=76, name=Processor chip, params=[SpecParam(id=8, cid=76, groupId=4, name=Procesador, numeric=false, unit=, generic=true, searching=true, segments=), SpecParam(id=9, cid=76, groupId=4, name=Modelo de procesador, numeric=false, unit=, generic=true, searching=false, segments=), SpecParam(id=10, cid=76, groupId=4, name=Procesadores Intel Core, numeric=false, unit=, generic=true, searching=true, segments=), SpecParam(id=11, cid=76, groupId=4, name=Capacidad de Procesador, numeric=true, unit=GHz, generic=true, searching=true, segments=0-1.0,1.0-1.5,1.5-2.0,2.0-2.5,2.5-)]), SpecGroup(id=5, cid=76, name=Memoria interna, params=[SpecParam(id=12, cid=76, groupId=5, name=Memoria interna, numeric=false, unit=, generic=false, searching=true, segments=), SpecParam(id=13, cid=76, groupId=5, name=Memoria RAM, numeric=false, unit=, generic=false, searching=true, segments=)]), SpecGroup(id=6, cid=76, name=Cámara, params=[SpecParam(id=16, cid=76, groupId=6, name=Cámara frontal, numeric=true, unit=MP, generic=true, searching=true, segments=0-5,5-10,10-15,15-20,25-), SpecParam(id=17, cid=76, groupId=6, name=Cámara trasera, numeric=true, unit=MP, generic=true, searching=true, segments=0-5,5-10,10-15,15-20,25-)]), SpecGroup(id=7, cid=76, name=Batería, params=[SpecParam(id=18, cid=76, groupId=7, name=Batería（mAh）, numeric=true, unit=mAh, generic=true, searching=true, segments=0-2000,2000-3000,3000-4000,4000-)]), SpecGroup(id=11, cid=76, name=Pantalla, params=[SpecParam(id=14, cid=76, groupId=11, name=Dimensiones, numeric=true, unit=mm, generic=true, searching=true, segments=0-4.0,4.0-5.0,5.0-5.5,5.5-6.0,6.0-), SpecParam(id=15, cid=76, groupId=11, name=Resolución cámara frontal, numeric=false, unit=, generic=true, searching=false, segments=)])]*/ [];
+	const b = /*{4=Color, 12=Memoria interna, 13=Memoria RAM}*/ [];
+	const c = /*[{name=Electrónica, id=74}, {name=Telefonía, id=75}, {name=Móviles, id=76}]*/ [];
+	const d = /*Spu(id=103, brandId=8557, cid1=74, cid2=75, cid3=76, title=Huawei（HUAWEI） Honor7X 畅玩7x 手机 , subTitle=送Honor原装耳机+一万毫安电源限64/128G版本!现货速发!&lt;a href=&quot;https://item.jd.com/26129180943.html&quot; target=&quot;_blank&quot;&gt;Honor7C点这&lt;/a&gt;, saleable=true, valid=true, createTime=Sat Apr 21 15:58:41 CEST 2018, lastUpdateTime=Sat Apr 21 15:58:41 CEST 2018)*/ {};
+	const e = /*SpuDetail(spuId=103, description=&lt;div align=&quot;center&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;//img10.360buyimg.com/imgzone/jfs/t8671/222/1467175489/71564/f39ed996/59ba12f2Nd0a1fcd2.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10441/174/2034835390/436797/6a8fe7ad/59ed5b78Na1cf37ce.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t11599/13/328202066/454111/254ba00/59ed5b7fN14999629.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10642/303/2032650034/183190/fc2d3178/59ed5b87Nf90ee0db.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10450/184/2035588261/308862/d6e4ffc8/59ed5b8fNb9c358c5.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t7597/220/3420290847/376646/410eb94f/59ed5b8fNa30c8c69.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t9979/282/2056216426/331057/b9268d18/59ed5b8aN9b4b12cc.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10327/224/2029934351/116449/584c7565/59ed5b8fN05163dcb.jpg&quot; /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10738/109/1313455948/48527/d39deb39/59decbabN71b1bc98.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t9535/107/1285676624/180327/e8308ac7/59decbb0Nf8a8d96e.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t9817/233/1276694147/183122/3bd8a98/59decbb0Nbb222c26.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t9571/126/1282180554/133916/a8441355/59decbadN30e60919.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10699/93/1282136754/136439/ceb76c4a/59decbacNe6e9df20.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10270/136/1271757259/127183/fbb3aa5a/59decba8N5d96a75a.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10234/253/1255503647/243595/17dbe513/59decbb0N895d9b63.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10663/165/1284445148/154027/8cffc900/59decbb1N7414c863.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10639/121/1297753071/91186/8568256/59decb9eNc9280c03.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10621/149/1309833639/132808/bb82483b/59decbb1N8e903fdf.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10237/205/1232914360/154335/213e5c09/59decbb1N40cc5031.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10699/96/1249761818/150693/45b79c6e/59decbb1N12c9957c.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10165/200/1285470275/121840/a1662d14/59decb92N7ee6ec08.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10126/236/1250972823/111885/36210628/59decbb1Ndd43e9e1.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t9601/139/1285624192/170761/7de38b98/59decbaeN45e499f8.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10294/95/1328386066/70522/a65f8d6c/59decba9N30bdfb12.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10807/13/1238870272/48581/8d2f5743/59decba9N94471d7f.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10984/102/1280659214/382367/98844af7/59decbb1Na9ae541f.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10054/138/1288579821/286380/acd0cb2c/59decc1eNb6fc68ee.jpg&quot; /&gt;&lt;br /&gt;&lt;img alt=&quot;&quot; src=&quot;//img10.360buyimg.com/imgzone/jfs/t9355/249/1446998247/240493/5cc1a0d2/59ba130cN10825ce4.jpg&quot; /&gt;&lt;img alt=&quot;&quot; src=&quot;//img30.360buyimg.com/popWaterMark/jfs/t10579/122/1266196440/654115/f4203680/59decc36Nbd12e03f.jpg&quot; /&gt;&lt;/div&gt;&lt;br/&gt;, specialSpec={&quot;4&quot;:[&quot;幻夜黑&quot;,&quot;铂光金&quot;,&quot;极光蓝&quot;,&quot;魅焰红色&quot;],&quot;12&quot;:[&quot;4GB&quot;],&quot;13&quot;:[&quot;128GB&quot;]}, genericSpec={&quot;1&quot;:&quot;其它&quot;,&quot;2&quot;:&quot;0&quot;,&quot;3&quot;:2017.0,&quot;5&quot;:156,&quot;6&quot;:&quot;其它&quot;,&quot;7&quot;:&quot;Android&quot;,&quot;8&quot;:&quot;&quot;,&quot;9&quot;:&quot;--&quot;,&quot;10&quot;:&quot;八核&quot;,&quot;11&quot;:1.8,&quot;14&quot;:3.0,&quot;15&quot;:&quot;其他&quot;,&quot;16&quot;:800.0,&quot;17&quot;:200.0,&quot;18&quot;:3000}, packingList=暂无, afterService=本产品全国联保，享受三包服务，质保期为：一年质保)*/ {};
+	const f = /*[Sku(id=17967388001, spuId=103, title=Huawei（HUAWEI） Honor7X 畅玩7x 手机 极光蓝 全网通(4G+64G), images=http://image.leyou.com/images/8/1/1524297520394.jpg, price=159900, ownSpec={&quot;4&quot;:&quot;极光蓝&quot;,&quot;12&quot;:&quot;4GB&quot;,&quot;13&quot;:&quot;128GB&quot;}, indexes=2_0_0, enable=true, createTime=Sat Apr 21 15:58:40 CEST 2018, lastUpdateTime=Sat Apr 21 15:58:40 CEST 2018, stock=9999), Sku(id=17967388003, spuId=103, title=Huawei（HUAWEI） Honor7X 畅玩7x 手机 铂光金 全网通(4G+64G), images=http://image.leyou.com/images/12/15/1524297520024.jpg, price=159900, ownSpec={&quot;4&quot;:&quot;铂光金&quot;,&quot;12&quot;:&quot;4GB&quot;,&quot;13&quot;:&quot;128GB&quot;}, indexes=1_0_0, enable=true, createTime=Sat Apr 21 15:58:40 CEST 2018, lastUpdateTime=Sat Apr 21 15:58:40 CEST 2018, stock=9999), Sku(id=17967388005, spuId=103, title=Huawei（HUAWEI） Honor7X 畅玩7x 手机 幻夜黑 全网通(4G+64G), images=http://image.leyou.com/images/9/13/1524297519504.jpg, price=159900, ownSpec={&quot;4&quot;:&quot;幻夜黑&quot;,&quot;12&quot;:&quot;4GB&quot;,&quot;13&quot;:&quot;128GB&quot;}, indexes=0_0_0, enable=true, createTime=Sat Apr 21 15:58:40 CEST 2018, lastUpdateTime=Sat Apr 21 15:58:40 CEST 2018, stock=9999), Sku(id=23004480395, spuId=103, title=Huawei（HUAWEI） Honor7X 畅玩7x 手机 魅焰红色 全网通(4G+128G), images=http://image.leyou.com/images/1/0/1524297520744.jpg, price=179900, ownSpec={&quot;4&quot;:&quot;魅焰红色&quot;,&quot;12&quot;:&quot;4GB&quot;,&quot;13&quot;:&quot;128GB&quot;}, indexes=3_0_0, enable=true, createTime=Sat Apr 21 15:58:41 CEST 2018, lastUpdateTime=Sat Apr 21 15:58:41 CEST 2018, stock=9999)]*/ [];
+	const g = /*Brand(id=8557, name=Huawei（HUAWEI）, image=http://img10.360buyimg.com/popshop/jfs/t5662/36/8888655583/7806/1c629c01/598033b4Nd6055897.jpg, letter=H)*/ {};
+</script>-->
+</body>
+
+</html>

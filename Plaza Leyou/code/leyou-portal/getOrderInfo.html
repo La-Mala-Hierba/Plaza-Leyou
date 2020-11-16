@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>Plaza Leyou--Pago</title>
+
+    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="css/pages-getOrderInfo.css" />
+</head>
+
+<body>
+	<!--head-->
+	<div id="orderInfoApp">
+		<div class="top">
+			<shortcut />
+		</div>
+	
+	<div  class="cart py-container">
+		
+			<!--logoArea-->
+			<div class="logoArea">
+				<div class="fl logo"><span class="title">TRAMITAR PEDIDO</span></div>
+			</div>
+			
+		<!--主内容-->
+		<div class="checkout py-container">
+			<div class="checkout-tit">
+				<h4 class="tit-txt">Seleccionar una dirección de envío y confirmar productos y envío</h4>
+			</div>
+			<div class="checkout-steps">
+				<!--收件人信息-->
+				<div class="step-tit">
+					<h5>Tu dirección<span><a data-toggle="modal" data-target=".edit" data-keyboard="false" class="newadd" @click="addAddress">Añadir una nueva dirección</a></span></h5>
+				</div>
+				<div class="step-cont">
+					<div class="addressInfo">
+						<ul class="addr-detail">
+							<li class="addr-item" v-for="(a,i) in addresses" :key="i">
+							  <div>
+								  <div :class="{con:true,name:true,selected:i === selectedAddress}">
+									  <a href="javascript:void(0);" @click.stop="selectedAddress=i" >{{a.name}}<span title="Cancelar"></span>&nbsp;</a></div>
+								<div class="con address" style="width: 800px">
+									{{a.state + "  " + a.city + "  " + a.district + "  " + a.address + " "}}
+									<span>{{a.phone}}</span>
+									<span class="base" v-if="a.defaultAddress">Dirección predeterminada</span>
+									<span class="edittext">
+										<a data-toggle="modal" data-target=".edit"
+										   data-keyboard="false" @click="editAddress(a.id)">Editar</a>&nbsp;&nbsp;
+										<a href="javascript:void(0)" @click="deleteAddress(a.id)">Eliminar</a>
+									</span>
+								</div>
+								<div class="clearfix"></div>
+							  </div>
+							</li>
+						</ul>
+						<!--添加地址-->
+                          <div  tabindex="-1" role="dialog" data-hasfoot="false" class="sui-modal hide fade edit">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" data-dismiss="modal" aria-hidden="true" class="sui-close" @click="clear">×</button>
+						        <h4 id="myModalLabel" class="modal-title">
+									{{isEdit ? "Editar" : "Añadir"}} una dirección
+								</h4>
+						      </div>
+						      <div class="modal-body">
+						      	<form action="" class="sui-form form-horizontal">
+						      		 <div class="control-group">
+									    <label class="control-label" style="width: 150px">Nombre y Apellido:   </label>
+									    <div class="controls">
+									      <input v-model="addressForm.name" type="text" class="input-medium" style="width: 300px">
+									    </div>
+									  </div>
+									   
+									   <div class="control-group">
+									    <label class="control-label" style="width: 150px">Teléfono de contacto:   </label>
+									    <div class="controls">
+									      <input v-model="addressForm.phone" type="text" class="input-large" style="width: 300px">
+									    </div>
+									  </div>
+									   <div class="control-group">
+									    <label class="control-label" style="width: 150px">Provincia:   </label>
+									    <div class="controls">
+									      <input v-model="addressForm.state" type="text" class="input-medium" style="width: 300px">
+									    </div>
+									  </div>
+									   <div class="control-group">
+									    <label class="control-label" style="width: 150px">Ciudad:   </label>
+									    <div class="controls">
+									      <input v-model="addressForm.city" type="text"  class="input-medium" style="width: 300px">
+									    </div>
+									  </div>
+									   <div class="control-group">
+									    <label class="control-label" style="width: 150px">Districto:   </label>
+									    <div class="controls">
+									      <input v-model="addressForm.district" type="text" class="input-medium" style="width: 300px">
+									    </div>
+									   </div>
+									<div class="control-group">
+										<label class="control-label" style="width: 150px">Dirección detallada:   </label>
+										<div class="controls">
+											<input v-model="addressForm.address" type="text" class="input-medium" style="width: 300px">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" style="width: 150px">Código postal:   </label>
+										<div class="controls">
+											<input v-model="addressForm.zipCode" type="text" class="input-medium" style="width: 300px">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" style="width: 250px">Definir como predeterminada   </label>
+										<div class="controls">
+											<input v-model="addressForm.defaultAddress" type="checkbox" class="checkbox">
+										</div>
+									</div>
+						      	</form>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" data-ok="modal"
+										class="sui-btn btn-primary btn-large" @click="saveAddress">Confirmar</button>
+						        <button type="button" data-dismiss="modal" class="sui-btn btn-default btn-large"  @click="clear">Cancelar</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						 <!--确认地址-->
+					</div>
+					<div class="hr"></div>
+					
+				</div>
+				<div class="hr"></div>
+				<!--支付和送货-->
+				<div class="payshipInfo">
+					<div class="step-tit">
+						<h5>Forma del pago</h5>
+					</div>
+					<div class="step-cont">
+						<ul class="payType">
+							<li :class="{selected : order.paymentType == 1}" @click="order.paymentType = 1">Pago online<span title="Canelar"></span></li>
+							<li :class="{selected : order.paymentType == 2}" @click="order.paymentType = 2">Portes Debidos<span title="Cancelar"></span></li>
+						</ul>
+					</div>
+					<div class="hr"></div>
+					<div class="step-tit">
+						<h5>Productos</h5>
+					</div>
+					<div class="step-cont">
+						<ul class="send-detail">
+							<li >
+								<div class="sendGoods">
+									<ul class="yui3-g" v-for="(cart, index) in carts":key="index">
+										<li class="yui3-u-1-6">
+											<span><img width="70px" height="70px" :src="cart.image"/></span>
+										</li>
+										<li class="yui3-u-7-12">
+											<div class="desc" v-text="cart.title"></div>
+											<div class="seven">Devolución en 30 días</div>
+										</li>
+										<li class="yui3-u-1-12">
+											<div class="price">￥<span v-text="ly.formatPrice((cart.price))"></span></div>
+										</li>
+										<li class="yui3-u-1-12">
+											<div class="num">X <span v-text="cart.num"></span></div>
+										</li>
+										<li class="yui3-u-1-12">
+											<div class="exit">Disponible</div>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="hr"></div>
+				</div>
+				<div class="linkInfo">
+					<div class="step-tit">
+						<h5>Facturación</h5>
+					</div>
+					<div class="step-cont">
+						<span>Factura para particular</span><br>
+						<span>Factura para empresa</span>
+					</div>
+				</div>
+				<div class="cardInfo">
+					<div class="step-tit">
+						<h5>Código promocional</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="order-summary">
+			<div class="static fr">
+				<div class="fc-price">
+					<span><i class="number">{{total}}</i></span>
+					<span v-if="total === 0 || total === 1">artículo</span>
+                    <span v-else>artículos</span>&nbsp;&nbsp;&nbsp;
+					Subtotal: <em class="allprice">¥{{totalPrice}}</em>
+				</div>
+				<div class="fc-price">
+					&nbsp;&nbsp;&nbsp;&nbsp<span>Gasto del envío：</span>
+					<em class="transport">¥{{ly.formatPrice(order.postFee)}}</em>
+				</div>
+				<div class="fc-price">
+					&nbsp;&nbsp;&nbsp;&nbsp<span>Descuento：</span>
+					<em class="transport">¥{{order.discount}}</em>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix trade">
+			<div class="fc-price">Importe total:　<span class="price">¥<span v-text="ly.formatPrice(actualPrice)"></span></span></div>
+			<div class="fc-receiverInfo">
+				Dirección del envío: {{addresses[selectedAddress].address}}
+				Destinatario：{{addresses[selectedAddress].name}} {{addresses[selectedAddress].phone}}
+			</div>
+		</div>
+		<div class="submit">
+			<a class="sui-btn btn-danger btn-xlarge" href="javascript:void(0)" @click="submit">Confirmar pedido</a>
+		</div>
+	</div>
+
+	</div>
+	<script src="./js/vue/vue.js"></script>
+	<script src="./js/axios.min.js"></script>
+	<script src="./js/common.js"></script>
+	<script type="text/javascript">
+        var orderInfoVm = new Vue({
+            el:"#orderInfoApp",
+            data:{
+            	ly,
+				isEdit: false,
+				addresses: [],
+				addressForm: {
+						name: "",// 收件人姓名
+						phone:"",// 电话
+						state:"",// 省份
+						city:"",// 城市
+						district:"",// 区
+						address:"",// 街道地址
+						zipCode:"", // 邮编
+						defaultAddress: false
+					},
+				selectedAddress: 0,
+				order: {
+                	paymentType: 1,
+					postFee: 2000,
+					discount: 0,
+				},
+				carts: []
+            },
+			created() {
+				this.loadData();
+			},
+			computed: {
+            	total() {
+					return this.carts.reduce((c1, c2) => c1 + c2.num, 0 );
+				},
+				totalPrice() {
+					return this.carts.reduce((c1, c2) => c1 + c2.price * c2.num, 0 );
+				},
+				actualPrice() {
+            		return this.totalPrice + this.order.postFee - this.order.discount;
+				}
+			},
+			methods: {
+				submit(){
+					ly.verify().then(({data}) => {
+						const address = this.addresses[this.selectedAddress];
+						let addr = {
+							receiver: address.name,
+							receiverMobile: address.phone,
+							receiverState: address.state,
+							receiverCity: address.city,
+							receiverDistrict: address.district,
+							receiverAddress: address.address,
+							receiverZip: address.zipCode,
+							invoiceType: 0,
+							sourceType: 2
+						};
+						const orderDetails = {orderDetails: this.carts};
+						Object.assign(this.order, addr, orderDetails,
+								{
+									totalPay:this.totalPrice,
+									actualPay:this.actualPrice,
+									buyerMessage:null,
+									buyerNick:data.username
+								});
+						ly.http.post("/order/order", this.order, {
+							transformResponse: [
+								function(data){
+									// Recepcionar el response original, en este caso, recepcionar orderId como String
+									return data;
+								},
+							]
+						}).then(({data}) => {
+							window.location = "http://www.leyou.com/pay.html";
+							ly.store.set("orderId", data);
+							ly.store.set("totalPay", this.actualPrice);
+						});
+					}).catch(() => {
+						window.location = "http://www.leyou.com/login.html?returnUrl=http://www.leyou.com/getOrderInfo.html";
+					});
+				},
+				saveAddress() {
+					ly.verify().then(() => {
+						if (this.isEdit === false){
+							// añadir dirección
+							ly.http.post("/order/order/address", this.addressForm).then(() => {
+								this.loadData();
+								this.clear();
+							});
+						}else {
+							// editar dirección
+							ly.http.put("/order/order/address", this.addressForm).then(() => {
+								this.loadData();
+								this.clear();
+							});
+						}
+					}).catch(() => {
+						window.location = "http://www.leyou.com/login.html?returnUrl=http://www.leyou.com/getOrderInfo.html";
+					});
+				},
+				editAddress(id) {
+					this.isEdit = true;
+					ly.verify().then(() => {
+						ly.http.get("/order/order/address/"+ id).then(({data}) => {
+							this.addressForm = data;
+						});
+					}).catch(() => {
+						window.location = "http://www.leyou.com/login.html?returnUrl=http://www.leyou.com/getOrderInfo.html";
+					});
+				},
+				addAddress(){
+					this.isEdit = false;
+					ly.verify().then(() => {
+						this.addressForm = {};
+					}).catch(() => {
+						window.location = "http://www.leyou.com/login.html?returnUrl=http://www.leyou.com/getOrderInfo.html";
+					});
+				},
+				deleteAddress(id) {
+					ly.verify().then(() => {
+						ly.http.delete("/order/order/address/"+id).then(() => {
+							this.loadData();
+						});
+					}).catch(() => {
+						window.location = "http://www.leyou.com/login.html?returnUrl=http://www.leyou.com/getOrderInfo.html";
+					});
+				},
+				clear() {},
+				loadData() {
+					ly.verify().then(() => {
+						this.carts = ly.store.get("PLY_SELECTED");
+						// obtener el listado de direcciones del usuario
+						ly.http.get("/order/order/address").then(({data}) => {
+							// colocar la dirección predeterminada en el primero
+							let temp;
+							for (let i = 0; i < data.length; i++) {
+								if (data[i].defaultAddress){
+									temp = data[0];
+									data[0] = data[i];
+									data[i] = temp;
+									break;
+								}
+							}
+							this.addresses = data;
+						});
+					}).catch(() => {
+						window.location = "http://www.leyou.com/login.html?returnUrl=" + window.location.href;
+					});
+				},
+			},
+			components:{
+                shortcut: () => import("/js/pages/shortcut.js")
+			}
+        });
+	</script>
+
+	<!-- 底部栏位 -->
+	<!--页面底部，由js动态加载-->
+	<div class="clearfix footer"></div>
+	<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript">$(".footer").load("foot.html");</script>
+	<!--页面底部END-->
+
+<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="js/pages/getOrderInfo.js"></script>
+</body>
+</html>

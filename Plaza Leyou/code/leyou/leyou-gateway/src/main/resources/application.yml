@@ -1,0 +1,42 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: leyou-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+    registry-fetch-interval-seconds: 5
+zuul:
+  prefix: /api
+  routes:
+    item-service: /item/** #routing to goods-microservice
+    search-service: /search/** #routing to search-microservice
+    user-service: /user/** #routing to user-microservice
+    auth-service: /auth/** #routing to auth-microservice
+    cart-service: /cart/** #routing to cart-microservice
+    order-service: /order/** #routing to order-microservice
+  add-host-header: true
+  sensitive-headers: # cover SensitiveHeader(null) so that the cookieValue could be transfered into browser
+  ignored-services:
+    - upload-service # zuul ingores upload-service
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 # set timeout of hystrix is of 6000ms
+leyou:
+  jwt:
+    pubKeyPath: D:\\aaa\\rsa\\rsa.pub # publicKey path
+    cookieName: PLY_TOKEN
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item

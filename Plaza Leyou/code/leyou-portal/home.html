@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>Plaza Leyou--Mi cuenta</title>
+     <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+</head>
+
+<body>
+	<!-- 头部栏位 -->
+	<!--页面顶部，由js动态加载-->
+    <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+    <div id="accountApp">
+        <div id="nav-bottom">
+            <ly-top/>
+        </div>
+
+<script type="text/javascript">
+$(function(){
+	$("#service").hover(function(){
+		$(".service").show();
+	},function(){
+		$(".service").hide();
+	});
+	$("#shopcar").hover(function(){
+		$("#shopcarlist").show();
+	},function(){
+		$("#shopcarlist").hide();
+	});
+
+})
+</script>
+<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
+<script type="text/javascript" src="js/widget/nav.js"></script>
+
+    <!--header-->
+        <!--<div id="account">-->
+        <div class="py-container">
+            <div class="yui3-g home">
+                <left/>
+                <!--右侧主内容-->
+                <div class="yui3-u-5-6 order-pay">
+                    <div class="body">
+                        <div class="table-title">
+                            <table class="sui-table  order-table">
+                                <tr>
+                                    <thead>
+                                        <th width="35%">Artículos</th>
+                                        <th width="10%">Precio</th>
+                                        <th width="5%">Qty</th>
+                                        <th width="8%">Estado</th>
+                                        <th width="10%">Pagado</th>
+                                        <th width="10%">Estado de transacción</th>
+                                        <th width="10%">Operaciones</th>
+                                    </thead>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="order-detail">
+                            <div class="orders">
+                                <div class="choose-order">
+                                    <div class="sui-pagination pagination-large top-pages">
+                                        <ul>
+                                            <li class="prev disabled"><a @click="prevPage">Anterior</a></li>
+
+                                            <li class="next"><a @click="nextPage">Seguiente</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+								<!--order1-->
+                                <div v-for="(o, index) in orders":key="index">
+                                <div class="choose-title" >
+                                    <label data-toggle="checkbox" class="checkbox-pretty ">
+                                           <input type="checkbox" checked="checked">
+                                        {{ly.formatDate(o.createTime) + " "}}&nbsp;&nbsp;Número del pedido:  {{o.orderId}}&nbsp;&nbsp;&nbsp;
+                                        <a>Atención de cliente</a>
+                                     </label>
+									  <a class="sui-btn btn-info share-btn">Compartir</a>
+                                </div>
+                                <table class="sui-table table-bordered order-datatable">
+                                    <tbody>
+                                        <tr v-for="(orderdetail, i) in o.orderDetails":key="i">
+                                            <td width="35%">
+                                                <div class="typographic">
+                                                    <img width="70px" height="70px" :src="orderdetail.image" />
+                                                    <a href="#" class="block-text">{{orderdetail.title}}</a>
+                                                    <span class="guige" v-for="(value, key) in JSON.parse(orderdetail.ownSpec)":key="key">
+                                                        {{value}}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td width="5%" class="center">
+                                                <ul class="unstyled">
+                                                  <!--  <li class="o-price">¥ </li>-->
+                                                    <li>¥<span v-text="ly.formatPrice(orderdetail.price)"></span></li>
+                                                </ul>
+                                            </td>
+                                            <td width="5%" class="center" v-text="orderdetail.num"></td>
+                                            <td width="8%" class="center">
+                                               
+                                            </td>
+                                            <td width="10%" class="center" :rowspan="o.orderDetails.length" v-if="i === 0">
+                                                <ul class="unstyled">
+                                                    <li>¥ {{ly.formatPrice(o.actualPay)}}</li>
+                                                  <!--  <li>（含运费：￥0.00）</li>-->
+                                                </ul>
+                                            </td>
+                                            <td width="10%" class="center" :rowspan="o.orderDetails.length" v-if="i === 0">
+                                                <ul class="unstyled">
+                                                    <li v-if="o.status === 1">Pendiente del pago</li>
+                                                    <li v-if="o.status === 2">Pendiente del envío</li>
+                                                    <li v-if="o.status === 3">Pendiente de recepción</li>
+                                                    <li v-if="o.status === 4">Pendiente del comentario</li>
+                                                    <li v-if="o.status === 5">Transacción cancelada</li>
+                                                    <li v-if="o.status === 6">Transacción finalizado</li>
+                                                    <li><a href="home-orderDetail.html" class="btn" @click="goToOrderDetail(o)">Detalles</a></li>
+                                                </ul>
+                                            </td>
+                                            <td width="10%" class="center" :rowspan="o.orderDetails.length" v-if="i === 0">
+                                                <ul class="unstyled">
+													<li v-if="o.status === 1"><a href="javascript:void(0)" class="sui-btn btn-info" @click="payment(o.orderId, o.actualPay)">A pagar</a></li><br>
+													<li v-if="o.status === 2"><a href="javascript:void(0)" class="sui-btn btn-info"  @click="deliver(o.orderId)">Recordar el envío</a></li>
+													<li v-if="o.status === 3"><a href="javascript:void(0)" class="sui-btn btn-info" @click="receiveGoods(o.orderId)">Confirmar recepción</a></li>
+													<li v-if="o.status === 4"><a href="javascript:void(0)" class="sui-btn btn-info" @click="review(o.orderId)">A comentar</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="choose-order">
+                                <div class="sui-pagination pagination-large top-pages">
+                                    <ul>
+                                        <li class="prev" :class="{disabled:query.page == 1}" @click="prevPage">
+                                            <a>«Anterior</a>
+                                        </li>
+                                        <li :class="{active : query.page === index(i)}"
+                                            v-for="i in Math.min(5, totalPage)" @click="query.page=index(i)">
+                                            <a v-text="index(i)"></a>
+                                        </li>
+                                        <li class="dotted"><span>...</span></li>
+                                        <li class="next" :class="{disabled:query.page == totalPage}" @click="nextPage">
+                                            <a>Siguiente»</a>
+                                        </li>
+                                    </ul>
+                                    <div><span>{{totalPage}} páginas&nbsp;</span><span>
+                                            ir al
+                                            <input type="text" class="page-num" ref="page">  página&nbsp;
+                                            <button class="page-confirm" @click="changePage">Confirmar</button>
+                                            </span></div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                        <div class="like-title">
+                            <div class="mt">
+                                <span class="fl"><strong>热卖单品</strong></span>
+                            </div>
+                        </div>
+                        <div class="like-list">
+                            <ul class="yui3-g">
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike01.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>3699.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有6人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike02.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>4388.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有700人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike03.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有700人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="yui3-u-1-4">
+                                    <div class="list-wrap">
+                                        <div class="p-img">
+                                            <img src="img/_/itemlike04.png" />
+                                        </div>
+                                        <div class="attr">
+                                            <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+                                        </div>
+                                        <div class="price">
+                                            <strong>
+											<em>¥</em>
+											<i>4088.00</i>
+										</strong>
+                                        </div>
+                                        <div class="commit">
+                                            <i class="command">已有700人评价</i>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!--</div>-->
+    </div>
+
+
+
+	<!-- 底部栏位 -->
+	<!--页面底部，由js动态加载-->
+	<div class="clearfix footer"></div>
+	<script type="text/javascript">$(".footer").load("foot.html");</script>
+	<!--页面底部END-->
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/vue/vuetify.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/plugins/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript">
+        let acountVm = new Vue({
+            el: "#accountApp",
+            data: {
+                ly,
+                orders: [],
+                total: 0, //总条数
+                totalPage: 0,
+                query:{
+                    page: 1, //currentPage
+                    rows: 5,
+                    status:0
+                },
+                user: {
+                    id: 0,
+                    username: ""
+                },
+            },
+            created(){
+                this.loadData();
+            },
+            methods:{
+                loadData(){
+                    ly.verify().then(response => {
+                        this.user = response.data;
+                        ly.http.get("order/order/list?"+ ly.stringify(this.query))
+                            .then(({data}) => {
+                                this.orders = data.items;
+                                this.total = data.total;
+                                this.totalPage = data.totalPage;
+                            }).catch(() => this.orders = []);
+                    }).catch(() => {
+                        this.goToLogin();
+                    });
+                },
+                index(i) { //计算页码
+                    //i代表展示的页码的首页，循环展示5次（5页）
+                    if (this.query.page <= 3 || this.totalPage <=5){
+                        return i;
+                    }else if (this.query.page >= this.totalPage - 2){
+                        return this.totalPage - 5 + i;
+                    }else {
+                        return this.query.page - 3 + i;
+                    }
+                },
+                prevPage() {
+                    if (this.query.page > 1){
+                        this.query.page--;
+                    }
+                },
+                nextPage() {
+                    if (this.query.page < this.totalPage){
+                        this.query.page++;
+                    }
+                },
+                changePage(){
+                    this.query.page = this.$refs.page.value;
+                },
+                updateOrderStatus(orderId, status){
+                    ly.verify().then(() => {
+                        ly.http.put("/order/order/"+ orderId + "/" + status).then(() => {
+                                this.loadData();
+                            }).catch(() => this.orders = []);
+                    }).catch(() => {
+                        this.goToLogin();
+                    });
+                },
+                payment(orderId, totalPay) {
+                    // efectuar el pago
+
+                    // -> a la página del pago
+                    ly.store.set("totalPay", totalPay);
+                    ly.store.set("orderId", orderId);
+                    window.location = "/pay.html";
+                    // modificar el estado del pedido
+                    this.updateOrderStatus(orderId, 2);
+                },
+                deliver(orderId){
+                    this.updateOrderStatus(orderId, 3);
+                },
+                receiveGoods(orderId){
+                    this.updateOrderStatus(orderId, 4);
+                },
+                review(orderId){
+                    this.updateOrderStatus(orderId, 6);
+                },
+                goToLogin() {
+                    window.location = "http://www.leyou.com/login.html?returnUrl=" + window.location.href;
+                },
+                goToOrderDetail(order){
+                    ly.verify().then(() => {
+                        ly.store.set("order", order);
+                        window.location = "http://www.leyou.com/home-orderDetail.html";
+                    }).catch(() => {
+                        this.goToLogin();
+                    });
+                },
+            },
+            components:{
+                lyTop: () => import("./js/pages/top.js"),
+                left: () => import("./js/pages/left.js")
+            }
+        });
+    </script>
+</body>
+
+</html>

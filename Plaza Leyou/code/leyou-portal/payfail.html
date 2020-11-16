@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+		<title>Plaza Leyou--Pago--Fallado</title>
+		<link rel="icon" href="/assets/img/favicon.ico">
+		
+	
+    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="css/pages-payfail.css" />
+</head>
+
+	<body>
+		
+		<!--页面顶部白条条，由js动态加载-->
+		<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+		<div id="payFailApp">
+			<div class="top">
+				<shortcut/>
+			</div>
+		
+		<div class="cart py-container">
+			<!--logoArea-->
+			<div class="logoArea">
+				<div class="fl logo"><span class="title">Estado del pago</span></div>
+			</div>
+			<!--主内容-->
+			<div class="payfail">
+				<div class="fail">
+					<h3><img src="img/_/fail.png" width="48" height="48">　Pago fallado, por favor, intentar más tarde</h3>
+					<div class="fail-text">
+					<!--<p>失败原因：不能使用金币购买！</p>-->
+					<p>Puedes a navegar al　<a href="javascript:void(0)" @click="goToHomepage">Homepage de Plaza Leyou</a></p>
+					<p class="button"><a href="javascript:void(0)" class="sui-btn btn-xlarge btn-danger" @click="goToPayAgain">Volver a pagar</a></p>
+				    </div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+	<!-- 底部栏位 -->
+	<!--页面底部，由js动态加载-->
+	<div class="clearfix footer"></div>
+	<script type="text/javascript">$(".footer").load("foot.html");</script>
+	<!--页面底部END-->
+</div>
+		
+	
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="components/ui-modules/nav/nav-portal-top.js"></script>
+
+<script src="./js/vue/vue.js"></script>
+<script src="./js/axios.min.js"></script>
+<script src="./js/common.js"></script>
+<script type="text/javascript">
+	let payFailVm = new Vue({
+		el: "#payFailApp",
+		data: {
+			orderId: 0,
+			actualPay: 0,
+
+		},
+		created(){
+			this.orderId = ly.getUrlParam("orderId");
+			this.actualPay = ly.getUrlParam("actualPay");
+		},
+		methods: {
+			goToHomepage(){
+				window.location = "http://www.leyou.com/index.html";
+			},
+			goToPayAgain(){
+				window.location = "http://www.leyou.com/pay.html";
+			}
+		},
+		components: {
+			shortcut: () => import('/js/pages/shortcut.js'),
+		}
+	});
+</script>
+</body>
+
+</html>
