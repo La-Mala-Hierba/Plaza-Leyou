@@ -36,6 +36,7 @@ leyou-portal
 ![Image text](https://github.com/La-Mala-Hierba/Plaza-Leyou/blob/master/Plaza%20Leyou/img/homepage.jpg)
 
 Proceso de hacer pedido
+![Image text](https://github.com/La-Mala-Hierba/Plaza-Leyou/blob/master/Plaza%20Leyou/img/PO%20Process.png)
 
 leyou-manager-web
 ![Image text](https://github.com/La-Mala-Hierba/Plaza-Leyou/blob/master/Plaza%20Leyou/img/leyou-manage.jpg)
