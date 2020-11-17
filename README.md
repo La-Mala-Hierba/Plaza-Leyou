@@ -21,7 +21,7 @@ Estructura del proyecto
 ![Image text](https://github.com/La-Mala-Hierba/Plaza-Leyou/blob/master/Plaza%20Leyou/img/Estrucutra%20del%20proyecto.png)
 
 Estructura de microservicios
-![Image text](https://github.com/La-Mala-Hierba/Plaza-Leyou/blob/master/Plaza%20Leyou/img/Whole%20Process.pngg)
+![Image text](https://github.com/La-Mala-Hierba/Plaza-Leyou/blob/master/Plaza%20Leyou/img/Whole%20Process.png)
 
 item-service análisis
 ![Image text](https://github.com/La-Mala-Hierba/Plaza-Leyou/blob/master/Plaza%20Leyou/img/item-service-databases-anaylisis.png)
